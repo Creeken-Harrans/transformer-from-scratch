@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OPUS Books en-it Dataset Overview</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #697386;
+      --line: #d9e0eb;
+      --blue: #2563eb;
+      --green: #059669;
+      --shadow: 0 1px 3px rgba(20, 30, 50, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 28px auto 40px;
+    }
+    header {
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 30px;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+    p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0;
+    }
+    .stat-card, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .stat-card {
+      min-height: 106px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stat-card span, .stat-card small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .stat-card strong {
+      font-size: 26px;
+      line-height: 1.1;
+    }
+    .grid-panels {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .panel {
+      padding: 16px;
+      overflow: hidden;
+    }
+    .panel.full {
+      grid-column: 1 / -1;
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .chart-title {
+      font-size: 16px;
+      font-weight: 700;
+      fill: var(--text);
+    }
+    .axis {
+      stroke: #8290a3;
+      stroke-width: 1.2;
+    }
+    .grid {
+      stroke: #e6ebf2;
+      stroke-width: 1;
+    }
+    .tick, .axis-label {
+      fill: var(--muted);
+      font-size: 11px;
+    }
+    .dot {
+      fill: var(--blue);
+      opacity: 0.34;
+    }
+    .word-bars {
+      display: grid;
+      gap: 8px;
+    }
+    .word-row {
+      display: grid;
+      grid-template-columns: minmax(86px, 120px) 1fr 46px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+    .word {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .bar {
+      height: 9px;
+      background: #edf1f7;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+    }
+    .count {
+      color: var(--muted);
+      text-align: right;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 10px 9px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 650;
+    }
+    td:first-child, td:last-child {
+      white-space: nowrap;
+      color: var(--muted);
+    }
+    @media (max-width: 900px) {
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-panels {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>OPUS Books en-it Dataset Overview</h1>
+      <p>Generated from local data in <code>data/opus_books_en_it</code>. Charts use an evenly spaced sample, not the full dataset.</p>
+    </header>
+    <section class="stats">
+      <section class="stat-card"><span>Total rows</span><strong>32,332</strong><small>local dataset</small></section>
+<section class="stat-card"><span>Sample rows</span><strong>800</strong><small>evenly spaced</small></section>
+<section class="stat-card"><span>EN words avg</span><strong>23.8</strong><small>median 18</small></section>
+<section class="stat-card"><span>IT words avg</span><strong>22.0</strong><small>median 17</small></section>
+<section class="stat-card"><span>EN tokens avg</span><strong>28.5</strong><small>max 266</small></section>
+<section class="stat-card"><span>IT tokens avg</span><strong>26.5</strong><small>max 145</small></section>
+    </section>
+    <section class="grid-panels">
+      <section class="panel full">
+        <svg viewBox="0 0 760 420" role="img" aria-label="Source and target token lengths">
+<text x="58" y="24" class="chart-title">Source vs target token length</text>
+<line x1="58" y1="366" x2="738" y2="366" class="axis" />
+<line x1="58" y1="36" x2="58" y2="366" class="axis" />
+<line x1="58.0" y1="36" x2="58.0" y2="366" class="grid" />
+<line x1="58" y1="366.0" x2="738" y2="366.0" class="grid" />
+<text x="58.0" y="386" class="tick" text-anchor="middle">0</text>
+<text x="48" y="370.0" class="tick" text-anchor="end">0</text>
+<line x1="228.0" y1="36" x2="228.0" y2="366" class="grid" />
+<line x1="58" y1="283.5" x2="738" y2="283.5" class="grid" />
+<text x="228.0" y="386" class="tick" text-anchor="middle">66</text>
+<text x="48" y="287.5" class="tick" text-anchor="end">36</text>
+<line x1="398.0" y1="36" x2="398.0" y2="366" class="grid" />
+<line x1="58" y1="201.0" x2="738" y2="201.0" class="grid" />
+<text x="398.0" y="386" class="tick" text-anchor="middle">133</text>
+<text x="48" y="205.0" class="tick" text-anchor="end">72</text>
+<line x1="568.0" y1="36" x2="568.0" y2="366" class="grid" />
+<line x1="58" y1="118.5" x2="738" y2="118.5" class="grid" />
+<text x="568.0" y="386" class="tick" text-anchor="middle">200</text>
+<text x="48" y="122.5" class="tick" text-anchor="end">109</text>
+<line x1="738.0" y1="36" x2="738.0" y2="366" class="grid" />
+<line x1="58" y1="36.0" x2="738" y2="36.0" class="grid" />
+<text x="738.0" y="386" class="tick" text-anchor="middle">266</text>
+<text x="48" y="40.0" class="tick" text-anchor="end">145</text>
+<circle cx="68.2" cy="341.0" r="3.2" class="dot"><title>row 0: en 4, it 11</title></circle>
+<circle cx="134.7" cy="306.8" r="3.2" class="dot"><title>row 40: en 30, it 26</title></circle>
+<circle cx="109.1" cy="350.1" r="3.2" class="dot"><title>row 81: en 20, it 7</title></circle>
+<circle cx="167.9" cy="268.1" r="3.2" class="dot"><title>row 121: en 43, it 43</title></circle>
+<circle cx="68.2" cy="359.2" r="3.2" class="dot"><title>row 162: en 4, it 3</title></circle>
+<circle cx="68.2" cy="356.9" r="3.2" class="dot"><title>row 202: en 4, it 4</title></circle>
+<circle cx="81.0" cy="350.1" r="3.2" class="dot"><title>row 243: en 9, it 7</title></circle>
+<circle cx="81.0" cy="341.0" r="3.2" class="dot"><title>row 283: en 9, it 11</title></circle>
+<circle cx="78.5" cy="354.6" r="3.2" class="dot"><title>row 324: en 8, it 5</title></circle>
+<circle cx="180.7" cy="290.9" r="3.2" class="dot"><title>row 364: en 48, it 33</title></circle>
+<circle cx="81.0" cy="336.4" r="3.2" class="dot"><title>row 405: en 9, it 13</title></circle>
+<circle cx="73.3" cy="356.9" r="3.2" class="dot"><title>row 445: en 6, it 4</title></circle>
+<circle cx="160.3" cy="284.1" r="3.2" class="dot"><title>row 486: en 40, it 36</title></circle>
+<circle cx="152.6" cy="304.6" r="3.2" class="dot"><title>row 526: en 37, it 27</title></circle>
+<circle cx="190.9" cy="295.4" r="3.2" class="dot"><title>row 567: en 52, it 31</title></circle>
+<circle cx="142.4" cy="315.9" r="3.2" class="dot"><title>row 607: en 33, it 22</title></circle>
+<circle cx="127.0" cy="304.6" r="3.2" class="dot"><title>row 647: en 27, it 27</title></circle>
+<circle cx="81.0" cy="352.3" r="3.2" class="dot"><title>row 688: en 9, it 6</title></circle>
+<circle cx="167.9" cy="318.2" r="3.2" class="dot"><title>row 728: en 43, it 21</title></circle>
+<circle cx="160.3" cy="297.7" r="3.2" class="dot"><title>row 769: en 40, it 30</title></circle>
+<circle cx="81.0" cy="345.5" r="3.2" class="dot"><title>row 809: en 9, it 9</title></circle>
+<circle cx="155.1" cy="311.4" r="3.2" class="dot"><title>row 850: en 38, it 24</title></circle>
+<circle cx="78.5" cy="352.3" r="3.2" class="dot"><title>row 890: en 8, it 6</title></circle>
+<circle cx="137.2" cy="306.8" r="3.2" class="dot"><title>row 931: en 31, it 26</title></circle>
+<circle cx="114.2" cy="329.6" r="3.2" class="dot"><title>row 971: en 22, it 16</title></circle>
+<circle cx="165.4" cy="272.7" r="3.2" class="dot"><title>row 1012: en 42, it 41</title></circle>
+<circle cx="152.6" cy="281.8" r="3.2" class="dot"><title>row 1052: en 37, it 37</title></circle>
+<circle cx="121.9" cy="325.0" r="3.2" class="dot"><title>row 1093: en 25, it 18</title></circle>
+<circle cx="81.0" cy="347.8" r="3.2" class="dot"><title>row 1133: en 9, it 8</title></circle>
+<circle cx="165.4" cy="279.5" r="3.2" class="dot"><title>row 1173: en 42, it 38</title></circle>
+<circle cx="129.6" cy="311.4" r="3.2" class="dot"><title>row 1214: en 28, it 24</title></circle>
+<circle cx="93.8" cy="341.0" r="3.2" class="dot"><title>row 1254: en 14, it 11</title></circle>
+<circle cx="81.0" cy="343.2" r="3.2" class="dot"><title>row 1295: en 9, it 10</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 1335: en 7, it 7</title></circle>
+<circle cx="152.6" cy="320.5" r="3.2" class="dot"><title>row 1376: en 37, it 20</title></circle>
+<circle cx="157.7" cy="304.6" r="3.2" class="dot"><title>row 1416: en 39, it 27</title></circle>
+<circle cx="83.6" cy="352.3" r="3.2" class="dot"><title>row 1457: en 10, it 6</title></circle>
+<circle cx="116.8" cy="309.1" r="3.2" class="dot"><title>row 1497: en 23, it 25</title></circle>
+<circle cx="106.6" cy="315.9" r="3.2" class="dot"><title>row 1538: en 19, it 22</title></circle>
+<circle cx="219.1" cy="254.5" r="3.2" class="dot"><title>row 1578: en 63, it 49</title></circle>
+<circle cx="88.7" cy="325.0" r="3.2" class="dot"><title>row 1619: en 12, it 18</title></circle>
+<circle cx="111.7" cy="329.6" r="3.2" class="dot"><title>row 1659: en 21, it 16</title></circle>
+<circle cx="101.5" cy="336.4" r="3.2" class="dot"><title>row 1700: en 17, it 13</title></circle>
+<circle cx="198.6" cy="302.3" r="3.2" class="dot"><title>row 1740: en 55, it 28</title></circle>
+<circle cx="106.6" cy="327.3" r="3.2" class="dot"><title>row 1780: en 19, it 17</title></circle>
+<circle cx="132.1" cy="336.4" r="3.2" class="dot"><title>row 1821: en 29, it 13</title></circle>
+<circle cx="73.3" cy="352.3" r="3.2" class="dot"><title>row 1861: en 6, it 6</title></circle>
+<circle cx="165.4" cy="313.7" r="3.2" class="dot"><title>row 1902: en 42, it 23</title></circle>
+<circle cx="155.1" cy="309.1" r="3.2" class="dot"><title>row 1942: en 38, it 25</title></circle>
+<circle cx="178.2" cy="268.1" r="3.2" class="dot"><title>row 1983: en 47, it 43</title></circle>
+<circle cx="65.7" cy="359.2" r="3.2" class="dot"><title>row 2023: en 3, it 3</title></circle>
+<circle cx="129.6" cy="322.8" r="3.2" class="dot"><title>row 2064: en 28, it 19</title></circle>
+<circle cx="111.7" cy="327.3" r="3.2" class="dot"><title>row 2104: en 21, it 17</title></circle>
+<circle cx="101.5" cy="315.9" r="3.2" class="dot"><title>row 2145: en 17, it 22</title></circle>
+<circle cx="98.9" cy="345.5" r="3.2" class="dot"><title>row 2185: en 16, it 9</title></circle>
+<circle cx="88.7" cy="347.8" r="3.2" class="dot"><title>row 2226: en 12, it 8</title></circle>
+<circle cx="91.2" cy="341.0" r="3.2" class="dot"><title>row 2266: en 13, it 11</title></circle>
+<circle cx="124.5" cy="334.1" r="3.2" class="dot"><title>row 2306: en 26, it 14</title></circle>
+<circle cx="231.8" cy="234.0" r="3.2" class="dot"><title>row 2347: en 68, it 58</title></circle>
+<circle cx="88.7" cy="338.7" r="3.2" class="dot"><title>row 2387: en 12, it 12</title></circle>
+<circle cx="121.9" cy="329.6" r="3.2" class="dot"><title>row 2428: en 25, it 16</title></circle>
+<circle cx="157.7" cy="275.0" r="3.2" class="dot"><title>row 2468: en 39, it 40</title></circle>
+<circle cx="86.1" cy="352.3" r="3.2" class="dot"><title>row 2509: en 11, it 6</title></circle>
+<circle cx="142.4" cy="297.7" r="3.2" class="dot"><title>row 2549: en 33, it 30</title></circle>
+<circle cx="213.9" cy="254.5" r="3.2" class="dot"><title>row 2590: en 61, it 49</title></circle>
+<circle cx="81.0" cy="343.2" r="3.2" class="dot"><title>row 2630: en 9, it 10</title></circle>
+<circle cx="162.8" cy="288.6" r="3.2" class="dot"><title>row 2671: en 41, it 34</title></circle>
+<circle cx="160.3" cy="304.6" r="3.2" class="dot"><title>row 2711: en 40, it 27</title></circle>
+<circle cx="321.3" cy="213.5" r="3.2" class="dot"><title>row 2752: en 103, it 67</title></circle>
+<circle cx="119.4" cy="320.5" r="3.2" class="dot"><title>row 2792: en 24, it 20</title></circle>
+<circle cx="98.9" cy="338.7" r="3.2" class="dot"><title>row 2833: en 16, it 12</title></circle>
+<circle cx="160.3" cy="313.7" r="3.2" class="dot"><title>row 2873: en 40, it 23</title></circle>
+<circle cx="116.8" cy="325.0" r="3.2" class="dot"><title>row 2913: en 23, it 18</title></circle>
+<circle cx="70.8" cy="354.6" r="3.2" class="dot"><title>row 2954: en 5, it 5</title></circle>
+<circle cx="91.2" cy="313.7" r="3.2" class="dot"><title>row 2994: en 13, it 23</title></circle>
+<circle cx="160.3" cy="281.8" r="3.2" class="dot"><title>row 3035: en 40, it 37</title></circle>
+<circle cx="73.3" cy="352.3" r="3.2" class="dot"><title>row 3075: en 6, it 6</title></circle>
+<circle cx="91.2" cy="345.5" r="3.2" class="dot"><title>row 3116: en 13, it 9</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 3156: en 7, it 7</title></circle>
+<circle cx="132.1" cy="336.4" r="3.2" class="dot"><title>row 3197: en 29, it 13</title></circle>
+<circle cx="109.1" cy="343.2" r="3.2" class="dot"><title>row 3237: en 20, it 10</title></circle>
+<circle cx="129.6" cy="318.2" r="3.2" class="dot"><title>row 3278: en 28, it 21</title></circle>
+<circle cx="155.1" cy="297.7" r="3.2" class="dot"><title>row 3318: en 38, it 30</title></circle>
+<circle cx="139.8" cy="286.3" r="3.2" class="dot"><title>row 3359: en 32, it 35</title></circle>
+<circle cx="86.1" cy="341.0" r="3.2" class="dot"><title>row 3399: en 11, it 11</title></circle>
+<circle cx="111.7" cy="325.0" r="3.2" class="dot"><title>row 3439: en 21, it 18</title></circle>
+<circle cx="121.9" cy="325.0" r="3.2" class="dot"><title>row 3480: en 25, it 18</title></circle>
+<circle cx="65.7" cy="359.2" r="3.2" class="dot"><title>row 3520: en 3, it 3</title></circle>
+<circle cx="119.4" cy="318.2" r="3.2" class="dot"><title>row 3561: en 24, it 21</title></circle>
+<circle cx="170.5" cy="297.7" r="3.2" class="dot"><title>row 3601: en 44, it 30</title></circle>
+<circle cx="167.9" cy="290.9" r="3.2" class="dot"><title>row 3642: en 43, it 33</title></circle>
+<circle cx="121.9" cy="327.3" r="3.2" class="dot"><title>row 3682: en 25, it 17</title></circle>
+<circle cx="162.8" cy="215.8" r="3.2" class="dot"><title>row 3723: en 41, it 66</title></circle>
+<circle cx="111.7" cy="325.0" r="3.2" class="dot"><title>row 3763: en 21, it 18</title></circle>
+<circle cx="121.9" cy="275.0" r="3.2" class="dot"><title>row 3804: en 25, it 40</title></circle>
+<circle cx="510.5" cy="120.2" r="3.2" class="dot"><title>row 3844: en 177, it 108</title></circle>
+<circle cx="167.9" cy="293.2" r="3.2" class="dot"><title>row 3885: en 43, it 32</title></circle>
+<circle cx="88.7" cy="341.0" r="3.2" class="dot"><title>row 3925: en 12, it 11</title></circle>
+<circle cx="104.0" cy="331.9" r="3.2" class="dot"><title>row 3966: en 18, it 15</title></circle>
+<circle cx="70.8" cy="359.2" r="3.2" class="dot"><title>row 4006: en 5, it 3</title></circle>
+<circle cx="127.0" cy="318.2" r="3.2" class="dot"><title>row 4046: en 27, it 21</title></circle>
+<circle cx="96.3" cy="331.9" r="3.2" class="dot"><title>row 4087: en 15, it 15</title></circle>
+<circle cx="137.2" cy="297.7" r="3.2" class="dot"><title>row 4127: en 31, it 30</title></circle>
+<circle cx="160.3" cy="288.6" r="3.2" class="dot"><title>row 4168: en 40, it 34</title></circle>
+<circle cx="65.7" cy="359.2" r="3.2" class="dot"><title>row 4208: en 3, it 3</title></circle>
+<circle cx="83.6" cy="345.5" r="3.2" class="dot"><title>row 4249: en 10, it 9</title></circle>
+<circle cx="111.7" cy="327.3" r="3.2" class="dot"><title>row 4289: en 21, it 17</title></circle>
+<circle cx="78.5" cy="347.8" r="3.2" class="dot"><title>row 4330: en 8, it 8</title></circle>
+<circle cx="142.4" cy="297.7" r="3.2" class="dot"><title>row 4370: en 33, it 30</title></circle>
+<circle cx="165.4" cy="311.4" r="3.2" class="dot"><title>row 4411: en 42, it 24</title></circle>
+<circle cx="83.6" cy="347.8" r="3.2" class="dot"><title>row 4451: en 10, it 8</title></circle>
+<circle cx="109.1" cy="327.3" r="3.2" class="dot"><title>row 4492: en 20, it 17</title></circle>
+<circle cx="116.8" cy="315.9" r="3.2" class="dot"><title>row 4532: en 23, it 22</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 4572: en 7, it 7</title></circle>
+<circle cx="147.5" cy="302.3" r="3.2" class="dot"><title>row 4613: en 35, it 28</title></circle>
+<circle cx="73.3" cy="356.9" r="3.2" class="dot"><title>row 4653: en 6, it 4</title></circle>
+<circle cx="93.8" cy="343.2" r="3.2" class="dot"><title>row 4694: en 14, it 10</title></circle>
+<circle cx="221.6" cy="247.7" r="3.2" class="dot"><title>row 4734: en 64, it 52</title></circle>
+<circle cx="152.6" cy="290.9" r="3.2" class="dot"><title>row 4775: en 37, it 33</title></circle>
+<circle cx="104.0" cy="336.4" r="3.2" class="dot"><title>row 4815: en 18, it 13</title></circle>
+<circle cx="152.6" cy="279.5" r="3.2" class="dot"><title>row 4856: en 37, it 38</title></circle>
+<circle cx="119.4" cy="318.2" r="3.2" class="dot"><title>row 4896: en 24, it 21</title></circle>
+<circle cx="93.8" cy="336.4" r="3.2" class="dot"><title>row 4937: en 14, it 13</title></circle>
+<circle cx="93.8" cy="334.1" r="3.2" class="dot"><title>row 4977: en 14, it 14</title></circle>
+<circle cx="96.3" cy="325.0" r="3.2" class="dot"><title>row 5018: en 15, it 18</title></circle>
+<circle cx="260.0" cy="218.1" r="3.2" class="dot"><title>row 5058: en 79, it 65</title></circle>
+<circle cx="78.5" cy="352.3" r="3.2" class="dot"><title>row 5099: en 8, it 6</title></circle>
+<circle cx="196.0" cy="288.6" r="3.2" class="dot"><title>row 5139: en 54, it 34</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 5179: en 7, it 7</title></circle>
+<circle cx="127.0" cy="286.3" r="3.2" class="dot"><title>row 5220: en 27, it 35</title></circle>
+<circle cx="124.5" cy="309.1" r="3.2" class="dot"><title>row 5260: en 26, it 25</title></circle>
+<circle cx="142.4" cy="341.0" r="3.2" class="dot"><title>row 5301: en 33, it 11</title></circle>
+<circle cx="96.3" cy="336.4" r="3.2" class="dot"><title>row 5341: en 15, it 13</title></circle>
+<circle cx="121.9" cy="311.4" r="3.2" class="dot"><title>row 5382: en 25, it 24</title></circle>
+<circle cx="165.4" cy="277.2" r="3.2" class="dot"><title>row 5422: en 42, it 39</title></circle>
+<circle cx="70.8" cy="356.9" r="3.2" class="dot"><title>row 5463: en 5, it 4</title></circle>
+<circle cx="150.0" cy="302.3" r="3.2" class="dot"><title>row 5503: en 36, it 28</title></circle>
+<circle cx="83.6" cy="350.1" r="3.2" class="dot"><title>row 5544: en 10, it 7</title></circle>
+<circle cx="78.5" cy="352.3" r="3.2" class="dot"><title>row 5584: en 8, it 6</title></circle>
+<circle cx="93.8" cy="338.7" r="3.2" class="dot"><title>row 5625: en 14, it 12</title></circle>
+<circle cx="101.5" cy="341.0" r="3.2" class="dot"><title>row 5665: en 17, it 11</title></circle>
+<circle cx="88.7" cy="347.8" r="3.2" class="dot"><title>row 5705: en 12, it 8</title></circle>
+<circle cx="73.3" cy="350.1" r="3.2" class="dot"><title>row 5746: en 6, it 7</title></circle>
+<circle cx="109.1" cy="320.5" r="3.2" class="dot"><title>row 5786: en 20, it 20</title></circle>
+<circle cx="81.0" cy="347.8" r="3.2" class="dot"><title>row 5827: en 9, it 8</title></circle>
+<circle cx="83.6" cy="347.8" r="3.2" class="dot"><title>row 5867: en 10, it 8</title></circle>
+<circle cx="111.7" cy="318.2" r="3.2" class="dot"><title>row 5908: en 21, it 21</title></circle>
+<circle cx="219.1" cy="252.2" r="3.2" class="dot"><title>row 5948: en 63, it 50</title></circle>
+<circle cx="88.7" cy="334.1" r="3.2" class="dot"><title>row 5989: en 12, it 14</title></circle>
+<circle cx="180.7" cy="306.8" r="3.2" class="dot"><title>row 6029: en 48, it 26</title></circle>
+<circle cx="127.0" cy="313.7" r="3.2" class="dot"><title>row 6070: en 27, it 23</title></circle>
+<circle cx="173.0" cy="284.1" r="3.2" class="dot"><title>row 6110: en 45, it 36</title></circle>
+<circle cx="96.3" cy="336.4" r="3.2" class="dot"><title>row 6151: en 15, it 13</title></circle>
+<circle cx="96.3" cy="322.8" r="3.2" class="dot"><title>row 6191: en 15, it 19</title></circle>
+<circle cx="178.2" cy="263.6" r="3.2" class="dot"><title>row 6232: en 47, it 45</title></circle>
+<circle cx="98.9" cy="343.2" r="3.2" class="dot"><title>row 6272: en 16, it 10</title></circle>
+<circle cx="109.1" cy="322.8" r="3.2" class="dot"><title>row 6312: en 20, it 19</title></circle>
+<circle cx="170.5" cy="293.2" r="3.2" class="dot"><title>row 6353: en 44, it 32</title></circle>
+<circle cx="150.0" cy="309.1" r="3.2" class="dot"><title>row 6393: en 36, it 25</title></circle>
+<circle cx="86.1" cy="347.8" r="3.2" class="dot"><title>row 6434: en 11, it 8</title></circle>
+<circle cx="91.2" cy="336.4" r="3.2" class="dot"><title>row 6474: en 13, it 13</title></circle>
+<circle cx="70.8" cy="354.6" r="3.2" class="dot"><title>row 6515: en 5, it 5</title></circle>
+<circle cx="137.2" cy="322.8" r="3.2" class="dot"><title>row 6555: en 31, it 19</title></circle>
+<circle cx="78.5" cy="338.7" r="3.2" class="dot"><title>row 6596: en 8, it 12</title></circle>
+<circle cx="155.1" cy="284.1" r="3.2" class="dot"><title>row 6636: en 38, it 36</title></circle>
+<circle cx="129.6" cy="309.1" r="3.2" class="dot"><title>row 6677: en 28, it 25</title></circle>
+<circle cx="180.7" cy="247.7" r="3.2" class="dot"><title>row 6717: en 48, it 52</title></circle>
+<circle cx="119.4" cy="334.1" r="3.2" class="dot"><title>row 6758: en 24, it 14</title></circle>
+<circle cx="111.7" cy="322.8" r="3.2" class="dot"><title>row 6798: en 21, it 19</title></circle>
+<circle cx="144.9" cy="318.2" r="3.2" class="dot"><title>row 6838: en 34, it 21</title></circle>
+<circle cx="98.9" cy="313.7" r="3.2" class="dot"><title>row 6879: en 16, it 23</title></circle>
+<circle cx="98.9" cy="336.4" r="3.2" class="dot"><title>row 6919: en 16, it 13</title></circle>
+<circle cx="150.0" cy="286.3" r="3.2" class="dot"><title>row 6960: en 36, it 35</title></circle>
+<circle cx="86.1" cy="345.5" r="3.2" class="dot"><title>row 7000: en 11, it 9</title></circle>
+<circle cx="119.4" cy="304.6" r="3.2" class="dot"><title>row 7041: en 24, it 27</title></circle>
+<circle cx="98.9" cy="327.3" r="3.2" class="dot"><title>row 7081: en 16, it 17</title></circle>
+<circle cx="134.7" cy="309.1" r="3.2" class="dot"><title>row 7122: en 30, it 25</title></circle>
+<circle cx="121.9" cy="325.0" r="3.2" class="dot"><title>row 7162: en 25, it 18</title></circle>
+<circle cx="121.9" cy="311.4" r="3.2" class="dot"><title>row 7203: en 25, it 24</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 7243: en 7, it 7</title></circle>
+<circle cx="142.4" cy="327.3" r="3.2" class="dot"><title>row 7284: en 33, it 17</title></circle>
+<circle cx="96.3" cy="336.4" r="3.2" class="dot"><title>row 7324: en 15, it 13</title></circle>
+<circle cx="83.6" cy="338.7" r="3.2" class="dot"><title>row 7365: en 10, it 12</title></circle>
+<circle cx="165.4" cy="295.4" r="3.2" class="dot"><title>row 7405: en 42, it 31</title></circle>
+<circle cx="83.6" cy="345.5" r="3.2" class="dot"><title>row 7445: en 10, it 9</title></circle>
+<circle cx="155.1" cy="313.7" r="3.2" class="dot"><title>row 7486: en 38, it 23</title></circle>
+<circle cx="73.3" cy="356.9" r="3.2" class="dot"><title>row 7526: en 6, it 4</title></circle>
+<circle cx="65.7" cy="354.6" r="3.2" class="dot"><title>row 7567: en 3, it 5</title></circle>
+<circle cx="78.5" cy="354.6" r="3.2" class="dot"><title>row 7607: en 8, it 5</title></circle>
+<circle cx="88.7" cy="338.7" r="3.2" class="dot"><title>row 7648: en 12, it 12</title></circle>
+<circle cx="121.9" cy="318.2" r="3.2" class="dot"><title>row 7688: en 25, it 21</title></circle>
+<circle cx="160.3" cy="259.0" r="3.2" class="dot"><title>row 7729: en 40, it 47</title></circle>
+<circle cx="124.5" cy="297.7" r="3.2" class="dot"><title>row 7769: en 26, it 30</title></circle>
+<circle cx="224.2" cy="222.6" r="3.2" class="dot"><title>row 7810: en 65, it 63</title></circle>
+<circle cx="91.2" cy="345.5" r="3.2" class="dot"><title>row 7850: en 13, it 9</title></circle>
+<circle cx="81.0" cy="343.2" r="3.2" class="dot"><title>row 7891: en 9, it 10</title></circle>
+<circle cx="134.7" cy="313.7" r="3.2" class="dot"><title>row 7931: en 30, it 23</title></circle>
+<circle cx="170.5" cy="279.5" r="3.2" class="dot"><title>row 7971: en 44, it 38</title></circle>
+<circle cx="101.5" cy="336.4" r="3.2" class="dot"><title>row 8012: en 17, it 13</title></circle>
+<circle cx="127.0" cy="302.3" r="3.2" class="dot"><title>row 8052: en 27, it 28</title></circle>
+<circle cx="134.7" cy="290.9" r="3.2" class="dot"><title>row 8093: en 30, it 33</title></circle>
+<circle cx="88.7" cy="341.0" r="3.2" class="dot"><title>row 8133: en 12, it 11</title></circle>
+<circle cx="88.7" cy="343.2" r="3.2" class="dot"><title>row 8174: en 12, it 10</title></circle>
+<circle cx="119.4" cy="318.2" r="3.2" class="dot"><title>row 8214: en 24, it 21</title></circle>
+<circle cx="129.6" cy="311.4" r="3.2" class="dot"><title>row 8255: en 28, it 24</title></circle>
+<circle cx="198.6" cy="263.6" r="3.2" class="dot"><title>row 8295: en 55, it 45</title></circle>
+<circle cx="91.2" cy="338.7" r="3.2" class="dot"><title>row 8336: en 13, it 12</title></circle>
+<circle cx="83.6" cy="338.7" r="3.2" class="dot"><title>row 8376: en 10, it 12</title></circle>
+<circle cx="129.6" cy="315.9" r="3.2" class="dot"><title>row 8417: en 28, it 22</title></circle>
+<circle cx="124.5" cy="300.0" r="3.2" class="dot"><title>row 8457: en 26, it 29</title></circle>
+<circle cx="119.4" cy="311.4" r="3.2" class="dot"><title>row 8498: en 24, it 24</title></circle>
+<circle cx="98.9" cy="318.2" r="3.2" class="dot"><title>row 8538: en 16, it 21</title></circle>
+<circle cx="129.6" cy="309.1" r="3.2" class="dot"><title>row 8578: en 28, it 25</title></circle>
+<circle cx="132.1" cy="309.1" r="3.2" class="dot"><title>row 8619: en 29, it 25</title></circle>
+<circle cx="147.5" cy="288.6" r="3.2" class="dot"><title>row 8659: en 35, it 34</title></circle>
+<circle cx="96.3" cy="336.4" r="3.2" class="dot"><title>row 8700: en 15, it 13</title></circle>
+<circle cx="121.9" cy="320.5" r="3.2" class="dot"><title>row 8740: en 25, it 20</title></circle>
+<circle cx="111.7" cy="329.6" r="3.2" class="dot"><title>row 8781: en 21, it 16</title></circle>
+<circle cx="111.7" cy="322.8" r="3.2" class="dot"><title>row 8821: en 21, it 19</title></circle>
+<circle cx="157.7" cy="300.0" r="3.2" class="dot"><title>row 8862: en 39, it 29</title></circle>
+<circle cx="137.2" cy="295.4" r="3.2" class="dot"><title>row 8902: en 31, it 31</title></circle>
+<circle cx="73.3" cy="352.3" r="3.2" class="dot"><title>row 8943: en 6, it 6</title></circle>
+<circle cx="183.3" cy="249.9" r="3.2" class="dot"><title>row 8983: en 49, it 51</title></circle>
+<circle cx="224.2" cy="202.1" r="3.2" class="dot"><title>row 9024: en 65, it 72</title></circle>
+<circle cx="183.3" cy="252.2" r="3.2" class="dot"><title>row 9064: en 49, it 50</title></circle>
+<circle cx="316.2" cy="206.7" r="3.2" class="dot"><title>row 9104: en 101, it 70</title></circle>
+<circle cx="421.0" cy="36.0" r="3.2" class="dot"><title>row 9145: en 142, it 145</title></circle>
+<circle cx="96.3" cy="331.9" r="3.2" class="dot"><title>row 9185: en 15, it 15</title></circle>
+<circle cx="323.9" cy="138.4" r="3.2" class="dot"><title>row 9226: en 104, it 100</title></circle>
+<circle cx="221.6" cy="213.5" r="3.2" class="dot"><title>row 9266: en 64, it 67</title></circle>
+<circle cx="270.2" cy="174.8" r="3.2" class="dot"><title>row 9307: en 83, it 84</title></circle>
+<circle cx="216.5" cy="227.2" r="3.2" class="dot"><title>row 9347: en 62, it 61</title></circle>
+<circle cx="111.7" cy="288.6" r="3.2" class="dot"><title>row 9388: en 21, it 34</title></circle>
+<circle cx="313.6" cy="209.0" r="3.2" class="dot"><title>row 9428: en 100, it 69</title></circle>
+<circle cx="254.8" cy="170.3" r="3.2" class="dot"><title>row 9469: en 77, it 86</title></circle>
+<circle cx="198.6" cy="245.4" r="3.2" class="dot"><title>row 9509: en 55, it 53</title></circle>
+<circle cx="124.5" cy="306.8" r="3.2" class="dot"><title>row 9550: en 26, it 26</title></circle>
+<circle cx="121.9" cy="315.9" r="3.2" class="dot"><title>row 9590: en 25, it 22</title></circle>
+<circle cx="73.3" cy="350.1" r="3.2" class="dot"><title>row 9631: en 6, it 7</title></circle>
+<circle cx="257.4" cy="145.2" r="3.2" class="dot"><title>row 9671: en 78, it 97</title></circle>
+<circle cx="185.8" cy="252.2" r="3.2" class="dot"><title>row 9711: en 50, it 50</title></circle>
+<circle cx="275.3" cy="174.8" r="3.2" class="dot"><title>row 9752: en 85, it 84</title></circle>
+<circle cx="288.1" cy="140.7" r="3.2" class="dot"><title>row 9792: en 90, it 99</title></circle>
+<circle cx="334.1" cy="133.9" r="3.2" class="dot"><title>row 9833: en 108, it 102</title></circle>
+<circle cx="357.1" cy="102.0" r="3.2" class="dot"><title>row 9873: en 117, it 116</title></circle>
+<circle cx="311.1" cy="170.3" r="3.2" class="dot"><title>row 9914: en 99, it 86</title></circle>
+<circle cx="93.8" cy="331.9" r="3.2" class="dot"><title>row 9954: en 14, it 15</title></circle>
+<circle cx="231.8" cy="165.7" r="3.2" class="dot"><title>row 9995: en 68, it 88</title></circle>
+<circle cx="295.7" cy="129.3" r="3.2" class="dot"><title>row 10035: en 93, it 104</title></circle>
+<circle cx="318.8" cy="152.1" r="3.2" class="dot"><title>row 10076: en 102, it 94</title></circle>
+<circle cx="116.8" cy="315.9" r="3.2" class="dot"><title>row 10116: en 23, it 22</title></circle>
+<circle cx="275.3" cy="143.0" r="3.2" class="dot"><title>row 10157: en 85, it 98</title></circle>
+<circle cx="150.0" cy="290.9" r="3.2" class="dot"><title>row 10197: en 36, it 33</title></circle>
+<circle cx="193.5" cy="245.4" r="3.2" class="dot"><title>row 10237: en 53, it 53</title></circle>
+<circle cx="738.0" cy="206.7" r="3.2" class="dot"><title>row 10278: en 266, it 70</title></circle>
+<circle cx="216.5" cy="215.8" r="3.2" class="dot"><title>row 10318: en 62, it 66</title></circle>
+<circle cx="213.9" cy="259.0" r="3.2" class="dot"><title>row 10359: en 61, it 47</title></circle>
+<circle cx="180.7" cy="302.3" r="3.2" class="dot"><title>row 10399: en 48, it 28</title></circle>
+<circle cx="219.1" cy="190.8" r="3.2" class="dot"><title>row 10440: en 63, it 77</title></circle>
+<circle cx="183.3" cy="286.3" r="3.2" class="dot"><title>row 10480: en 49, it 35</title></circle>
+<circle cx="137.2" cy="304.6" r="3.2" class="dot"><title>row 10521: en 31, it 27</title></circle>
+<circle cx="318.8" cy="106.6" r="3.2" class="dot"><title>row 10561: en 102, it 114</title></circle>
+<circle cx="364.8" cy="90.6" r="3.2" class="dot"><title>row 10602: en 120, it 121</title></circle>
+<circle cx="288.1" cy="152.1" r="3.2" class="dot"><title>row 10642: en 90, it 94</title></circle>
+<circle cx="260.0" cy="163.4" r="3.2" class="dot"><title>row 10683: en 79, it 89</title></circle>
+<circle cx="180.7" cy="229.4" r="3.2" class="dot"><title>row 10723: en 48, it 60</title></circle>
+<circle cx="193.5" cy="163.4" r="3.2" class="dot"><title>row 10764: en 53, it 89</title></circle>
+<circle cx="252.3" cy="197.6" r="3.2" class="dot"><title>row 10804: en 76, it 74</title></circle>
+<circle cx="359.7" cy="193.0" r="3.2" class="dot"><title>row 10844: en 118, it 76</title></circle>
+<circle cx="375.0" cy="133.9" r="3.2" class="dot"><title>row 10885: en 124, it 102</title></circle>
+<circle cx="137.2" cy="199.9" r="3.2" class="dot"><title>row 10925: en 31, it 73</title></circle>
+<circle cx="152.6" cy="295.4" r="3.2" class="dot"><title>row 10966: en 37, it 31</title></circle>
+<circle cx="303.4" cy="195.3" r="3.2" class="dot"><title>row 11006: en 96, it 75</title></circle>
+<circle cx="75.9" cy="352.3" r="3.2" class="dot"><title>row 11047: en 7, it 6</title></circle>
+<circle cx="70.8" cy="356.9" r="3.2" class="dot"><title>row 11087: en 5, it 4</title></circle>
+<circle cx="96.3" cy="327.3" r="3.2" class="dot"><title>row 11128: en 15, it 17</title></circle>
+<circle cx="86.1" cy="347.8" r="3.2" class="dot"><title>row 11168: en 11, it 8</title></circle>
+<circle cx="93.8" cy="338.7" r="3.2" class="dot"><title>row 11209: en 14, it 12</title></circle>
+<circle cx="83.6" cy="336.4" r="3.2" class="dot"><title>row 11249: en 10, it 13</title></circle>
+<circle cx="93.8" cy="345.5" r="3.2" class="dot"><title>row 11290: en 14, it 9</title></circle>
+<circle cx="132.1" cy="313.7" r="3.2" class="dot"><title>row 11330: en 29, it 23</title></circle>
+<circle cx="183.3" cy="254.5" r="3.2" class="dot"><title>row 11370: en 49, it 49</title></circle>
+<circle cx="78.5" cy="350.1" r="3.2" class="dot"><title>row 11411: en 8, it 7</title></circle>
+<circle cx="98.9" cy="329.6" r="3.2" class="dot"><title>row 11451: en 16, it 16</title></circle>
+<circle cx="78.5" cy="350.1" r="3.2" class="dot"><title>row 11492: en 8, it 7</title></circle>
+<circle cx="244.6" cy="224.9" r="3.2" class="dot"><title>row 11532: en 73, it 62</title></circle>
+<circle cx="157.7" cy="284.1" r="3.2" class="dot"><title>row 11573: en 39, it 36</title></circle>
+<circle cx="152.6" cy="290.9" r="3.2" class="dot"><title>row 11613: en 37, it 33</title></circle>
+<circle cx="98.9" cy="331.9" r="3.2" class="dot"><title>row 11654: en 16, it 15</title></circle>
+<circle cx="155.1" cy="281.8" r="3.2" class="dot"><title>row 11694: en 38, it 37</title></circle>
+<circle cx="155.1" cy="288.6" r="3.2" class="dot"><title>row 11735: en 38, it 34</title></circle>
+<circle cx="88.7" cy="336.4" r="3.2" class="dot"><title>row 11775: en 12, it 13</title></circle>
+<circle cx="139.8" cy="279.5" r="3.2" class="dot"><title>row 11816: en 32, it 38</title></circle>
+<circle cx="134.7" cy="297.7" r="3.2" class="dot"><title>row 11856: en 30, it 30</title></circle>
+<circle cx="65.7" cy="359.2" r="3.2" class="dot"><title>row 11897: en 3, it 3</title></circle>
+<circle cx="178.2" cy="263.6" r="3.2" class="dot"><title>row 11937: en 47, it 45</title></circle>
+<circle cx="295.7" cy="145.2" r="3.2" class="dot"><title>row 11977: en 93, it 97</title></circle>
+<circle cx="98.9" cy="334.1" r="3.2" class="dot"><title>row 12018: en 16, it 14</title></circle>
+<circle cx="98.9" cy="338.7" r="3.2" class="dot"><title>row 12058: en 16, it 12</title></circle>
+<circle cx="129.6" cy="288.6" r="3.2" class="dot"><title>row 12099: en 28, it 34</title></circle>
+<circle cx="91.2" cy="345.5" r="3.2" class="dot"><title>row 12139: en 13, it 9</title></circle>
+<circle cx="127.0" cy="311.4" r="3.2" class="dot"><title>row 12180: en 27, it 24</title></circle>
+<circle cx="88.7" cy="338.7" r="3.2" class="dot"><title>row 12220: en 12, it 12</title></circle>
+<circle cx="119.4" cy="309.1" r="3.2" class="dot"><title>row 12261: en 24, it 25</title></circle>
+<circle cx="124.5" cy="311.4" r="3.2" class="dot"><title>row 12301: en 26, it 24</title></circle>
+<circle cx="124.5" cy="320.5" r="3.2" class="dot"><title>row 12342: en 26, it 20</title></circle>
+<circle cx="83.6" cy="347.8" r="3.2" class="dot"><title>row 12382: en 10, it 8</title></circle>
+<circle cx="162.8" cy="270.4" r="3.2" class="dot"><title>row 12423: en 41, it 42</title></circle>
+<circle cx="203.7" cy="270.4" r="3.2" class="dot"><title>row 12463: en 57, it 42</title></circle>
+<circle cx="139.8" cy="300.0" r="3.2" class="dot"><title>row 12503: en 32, it 29</title></circle>
+<circle cx="124.5" cy="297.7" r="3.2" class="dot"><title>row 12544: en 26, it 30</title></circle>
+<circle cx="93.8" cy="329.6" r="3.2" class="dot"><title>row 12584: en 14, it 16</title></circle>
+<circle cx="114.2" cy="304.6" r="3.2" class="dot"><title>row 12625: en 22, it 27</title></circle>
+<circle cx="183.3" cy="272.7" r="3.2" class="dot"><title>row 12665: en 49, it 41</title></circle>
+<circle cx="147.5" cy="277.2" r="3.2" class="dot"><title>row 12706: en 35, it 39</title></circle>
+<circle cx="121.9" cy="306.8" r="3.2" class="dot"><title>row 12746: en 25, it 26</title></circle>
+<circle cx="93.8" cy="343.2" r="3.2" class="dot"><title>row 12787: en 14, it 10</title></circle>
+<circle cx="116.8" cy="322.8" r="3.2" class="dot"><title>row 12827: en 23, it 19</title></circle>
+<circle cx="201.2" cy="245.4" r="3.2" class="dot"><title>row 12868: en 56, it 53</title></circle>
+<circle cx="111.7" cy="320.5" r="3.2" class="dot"><title>row 12908: en 21, it 20</title></circle>
+<circle cx="293.2" cy="168.0" r="3.2" class="dot"><title>row 12949: en 92, it 87</title></circle>
+<circle cx="83.6" cy="336.4" r="3.2" class="dot"><title>row 12989: en 10, it 13</title></circle>
+<circle cx="73.3" cy="347.8" r="3.2" class="dot"><title>row 13030: en 6, it 8</title></circle>
+<circle cx="98.9" cy="331.9" r="3.2" class="dot"><title>row 13070: en 16, it 15</title></circle>
+<circle cx="121.9" cy="313.7" r="3.2" class="dot"><title>row 13110: en 25, it 23</title></circle>
+<circle cx="91.2" cy="336.4" r="3.2" class="dot"><title>row 13151: en 13, it 13</title></circle>
+<circle cx="106.6" cy="329.6" r="3.2" class="dot"><title>row 13191: en 19, it 16</title></circle>
+<circle cx="83.6" cy="350.1" r="3.2" class="dot"><title>row 13232: en 10, it 7</title></circle>
+<circle cx="321.3" cy="188.5" r="3.2" class="dot"><title>row 13272: en 103, it 78</title></circle>
+<circle cx="111.7" cy="313.7" r="3.2" class="dot"><title>row 13313: en 21, it 23</title></circle>
+<circle cx="78.5" cy="350.1" r="3.2" class="dot"><title>row 13353: en 8, it 7</title></circle>
+<circle cx="116.8" cy="304.6" r="3.2" class="dot"><title>row 13394: en 23, it 27</title></circle>
+<circle cx="104.0" cy="327.3" r="3.2" class="dot"><title>row 13434: en 18, it 17</title></circle>
+<circle cx="93.8" cy="331.9" r="3.2" class="dot"><title>row 13475: en 14, it 15</title></circle>
+<circle cx="124.5" cy="315.9" r="3.2" class="dot"><title>row 13515: en 26, it 22</title></circle>
+<circle cx="119.4" cy="311.4" r="3.2" class="dot"><title>row 13556: en 24, it 24</title></circle>
+<circle cx="101.5" cy="311.4" r="3.2" class="dot"><title>row 13596: en 17, it 24</title></circle>
+<circle cx="119.4" cy="315.9" r="3.2" class="dot"><title>row 13636: en 24, it 22</title></circle>
+<circle cx="88.7" cy="329.6" r="3.2" class="dot"><title>row 13677: en 12, it 16</title></circle>
+<circle cx="93.8" cy="338.7" r="3.2" class="dot"><title>row 13717: en 14, it 12</title></circle>
+<circle cx="236.9" cy="209.0" r="3.2" class="dot"><title>row 13758: en 70, it 69</title></circle>
+<circle cx="150.0" cy="275.0" r="3.2" class="dot"><title>row 13798: en 36, it 40</title></circle>
+<circle cx="119.4" cy="311.4" r="3.2" class="dot"><title>row 13839: en 24, it 24</title></circle>
+<circle cx="196.0" cy="265.9" r="3.2" class="dot"><title>row 13879: en 54, it 44</title></circle>
+<circle cx="152.6" cy="295.4" r="3.2" class="dot"><title>row 13920: en 37, it 31</title></circle>
+<circle cx="121.9" cy="311.4" r="3.2" class="dot"><title>row 13960: en 25, it 24</title></circle>
+<circle cx="86.1" cy="345.5" r="3.2" class="dot"><title>row 14001: en 11, it 9</title></circle>
+<circle cx="134.7" cy="311.4" r="3.2" class="dot"><title>row 14041: en 30, it 24</title></circle>
+<circle cx="137.2" cy="297.7" r="3.2" class="dot"><title>row 14082: en 31, it 30</title></circle>
+<circle cx="362.2" cy="111.1" r="3.2" class="dot"><title>row 14122: en 119, it 112</title></circle>
+<circle cx="104.0" cy="329.6" r="3.2" class="dot"><title>row 14163: en 18, it 16</title></circle>
+<circle cx="88.7" cy="352.3" r="3.2" class="dot"><title>row 14203: en 12, it 6</title></circle>
+<circle cx="382.7" cy="115.7" r="3.2" class="dot"><title>row 14243: en 127, it 110</title></circle>
+<circle cx="101.5" cy="311.4" r="3.2" class="dot"><title>row 14284: en 17, it 24</title></circle>
+<circle cx="275.3" cy="220.3" r="3.2" class="dot"><title>row 14324: en 85, it 64</title></circle>
+<circle cx="331.5" cy="147.5" r="3.2" class="dot"><title>row 14365: en 107, it 96</title></circle>
+<circle cx="190.9" cy="247.7" r="3.2" class="dot"><title>row 14405: en 52, it 52</title></circle>
+<circle cx="362.2" cy="111.1" r="3.2" class="dot"><title>row 14446: en 119, it 112</title></circle>
+<circle cx="216.5" cy="231.7" r="3.2" class="dot"><title>row 14486: en 62, it 59</title></circle>
+<circle cx="372.4" cy="133.9" r="3.2" class="dot"><title>row 14527: en 123, it 102</title></circle>
+<circle cx="129.6" cy="256.8" r="3.2" class="dot"><title>row 14567: en 28, it 48</title></circle>
+<circle cx="321.3" cy="147.5" r="3.2" class="dot"><title>row 14608: en 103, it 96</title></circle>
+<circle cx="213.9" cy="222.6" r="3.2" class="dot"><title>row 14648: en 61, it 63</title></circle>
+<circle cx="114.2" cy="306.8" r="3.2" class="dot"><title>row 14689: en 22, it 26</title></circle>
+<circle cx="78.5" cy="347.8" r="3.2" class="dot"><title>row 14729: en 8, it 8</title></circle>
+<circle cx="229.3" cy="286.3" r="3.2" class="dot"><title>row 14769: en 67, it 35</title></circle>
+<circle cx="81.0" cy="347.8" r="3.2" class="dot"><title>row 14810: en 9, it 8</title></circle>
+<circle cx="75.9" cy="343.2" r="3.2" class="dot"><title>row 14850: en 7, it 10</title></circle>
+<circle cx="129.6" cy="288.6" r="3.2" class="dot"><title>row 14891: en 28, it 34</title></circle>
+<circle cx="109.1" cy="322.8" r="3.2" class="dot"><title>row 14931: en 20, it 19</title></circle>
+<circle cx="63.1" cy="361.4" r="3.2" class="dot"><title>row 14972: en 2, it 2</title></circle>
+<circle cx="93.8" cy="336.4" r="3.2" class="dot"><title>row 15012: en 14, it 13</title></circle>
+<circle cx="121.9" cy="334.1" r="3.2" class="dot"><title>row 15053: en 25, it 14</title></circle>
+<circle cx="165.4" cy="254.5" r="3.2" class="dot"><title>row 15093: en 42, it 49</title></circle>
+<circle cx="68.2" cy="354.6" r="3.2" class="dot"><title>row 15134: en 4, it 5</title></circle>
+<circle cx="142.4" cy="300.0" r="3.2" class="dot"><title>row 15174: en 33, it 29</title></circle>
+<circle cx="183.3" cy="284.1" r="3.2" class="dot"><title>row 15215: en 49, it 36</title></circle>
+<circle cx="65.7" cy="361.4" r="3.2" class="dot"><title>row 15255: en 3, it 2</title></circle>
+<circle cx="162.8" cy="286.3" r="3.2" class="dot"><title>row 15296: en 41, it 35</title></circle>
+<circle cx="106.6" cy="331.9" r="3.2" class="dot"><title>row 15336: en 19, it 15</title></circle>
+<circle cx="101.5" cy="331.9" r="3.2" class="dot"><title>row 15376: en 17, it 15</title></circle>
+<circle cx="290.6" cy="188.5" r="3.2" class="dot"><title>row 15417: en 91, it 78</title></circle>
+<circle cx="73.3" cy="354.6" r="3.2" class="dot"><title>row 15457: en 6, it 5</title></circle>
+<circle cx="137.2" cy="302.3" r="3.2" class="dot"><title>row 15498: en 31, it 28</title></circle>
+<circle cx="127.0" cy="300.0" r="3.2" class="dot"><title>row 15538: en 27, it 29</title></circle>
+<circle cx="116.8" cy="320.5" r="3.2" class="dot"><title>row 15579: en 23, it 20</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 15619: en 7, it 7</title></circle>
+<circle cx="65.7" cy="359.2" r="3.2" class="dot"><title>row 15660: en 3, it 3</title></circle>
+<circle cx="160.3" cy="279.5" r="3.2" class="dot"><title>row 15700: en 40, it 38</title></circle>
+<circle cx="93.8" cy="347.8" r="3.2" class="dot"><title>row 15741: en 14, it 8</title></circle>
+<circle cx="104.0" cy="325.0" r="3.2" class="dot"><title>row 15781: en 18, it 18</title></circle>
+<circle cx="81.0" cy="345.5" r="3.2" class="dot"><title>row 15822: en 9, it 9</title></circle>
+<circle cx="165.4" cy="261.3" r="3.2" class="dot"><title>row 15862: en 42, it 46</title></circle>
+<circle cx="150.0" cy="281.8" r="3.2" class="dot"><title>row 15902: en 36, it 37</title></circle>
+<circle cx="98.9" cy="336.4" r="3.2" class="dot"><title>row 15943: en 16, it 13</title></circle>
+<circle cx="106.6" cy="331.9" r="3.2" class="dot"><title>row 15983: en 19, it 15</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 16024: en 7, it 7</title></circle>
+<circle cx="221.6" cy="238.6" r="3.2" class="dot"><title>row 16064: en 64, it 56</title></circle>
+<circle cx="73.3" cy="347.8" r="3.2" class="dot"><title>row 16105: en 6, it 8</title></circle>
+<circle cx="75.9" cy="343.2" r="3.2" class="dot"><title>row 16145: en 7, it 10</title></circle>
+<circle cx="106.6" cy="331.9" r="3.2" class="dot"><title>row 16186: en 19, it 15</title></circle>
+<circle cx="68.2" cy="354.6" r="3.2" class="dot"><title>row 16226: en 4, it 5</title></circle>
+<circle cx="132.1" cy="302.3" r="3.2" class="dot"><title>row 16267: en 29, it 28</title></circle>
+<circle cx="114.2" cy="325.0" r="3.2" class="dot"><title>row 16307: en 22, it 18</title></circle>
+<circle cx="106.6" cy="327.3" r="3.2" class="dot"><title>row 16348: en 19, it 17</title></circle>
+<circle cx="155.1" cy="288.6" r="3.2" class="dot"><title>row 16388: en 38, it 34</title></circle>
+<circle cx="127.0" cy="318.2" r="3.2" class="dot"><title>row 16429: en 27, it 21</title></circle>
+<circle cx="109.1" cy="322.8" r="3.2" class="dot"><title>row 16469: en 20, it 19</title></circle>
+<circle cx="129.6" cy="302.3" r="3.2" class="dot"><title>row 16509: en 28, it 28</title></circle>
+<circle cx="78.5" cy="343.2" r="3.2" class="dot"><title>row 16550: en 8, it 10</title></circle>
+<circle cx="91.2" cy="329.6" r="3.2" class="dot"><title>row 16590: en 13, it 16</title></circle>
+<circle cx="139.8" cy="306.8" r="3.2" class="dot"><title>row 16631: en 32, it 26</title></circle>
+<circle cx="121.9" cy="313.7" r="3.2" class="dot"><title>row 16671: en 25, it 23</title></circle>
+<circle cx="106.6" cy="327.3" r="3.2" class="dot"><title>row 16712: en 19, it 17</title></circle>
+<circle cx="78.5" cy="354.6" r="3.2" class="dot"><title>row 16752: en 8, it 5</title></circle>
+<circle cx="183.3" cy="231.7" r="3.2" class="dot"><title>row 16793: en 49, it 59</title></circle>
+<circle cx="134.7" cy="277.2" r="3.2" class="dot"><title>row 16833: en 30, it 39</title></circle>
+<circle cx="81.0" cy="354.6" r="3.2" class="dot"><title>row 16874: en 9, it 5</title></circle>
+<circle cx="91.2" cy="334.1" r="3.2" class="dot"><title>row 16914: en 13, it 14</title></circle>
+<circle cx="357.1" cy="113.4" r="3.2" class="dot"><title>row 16955: en 117, it 111</title></circle>
+<circle cx="144.9" cy="288.6" r="3.2" class="dot"><title>row 16995: en 34, it 34</title></circle>
+<circle cx="132.1" cy="295.4" r="3.2" class="dot"><title>row 17035: en 29, it 31</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 17076: en 7, it 7</title></circle>
+<circle cx="221.6" cy="231.7" r="3.2" class="dot"><title>row 17116: en 64, it 59</title></circle>
+<circle cx="83.6" cy="341.0" r="3.2" class="dot"><title>row 17157: en 10, it 11</title></circle>
+<circle cx="106.6" cy="334.1" r="3.2" class="dot"><title>row 17197: en 19, it 14</title></circle>
+<circle cx="144.9" cy="297.7" r="3.2" class="dot"><title>row 17238: en 34, it 30</title></circle>
+<circle cx="98.9" cy="338.7" r="3.2" class="dot"><title>row 17278: en 16, it 12</title></circle>
+<circle cx="198.6" cy="272.7" r="3.2" class="dot"><title>row 17319: en 55, it 41</title></circle>
+<circle cx="132.1" cy="304.6" r="3.2" class="dot"><title>row 17359: en 29, it 27</title></circle>
+<circle cx="73.3" cy="354.6" r="3.2" class="dot"><title>row 17400: en 6, it 5</title></circle>
+<circle cx="101.5" cy="329.6" r="3.2" class="dot"><title>row 17440: en 17, it 16</title></circle>
+<circle cx="132.1" cy="288.6" r="3.2" class="dot"><title>row 17481: en 29, it 34</title></circle>
+<circle cx="73.3" cy="350.1" r="3.2" class="dot"><title>row 17521: en 6, it 7</title></circle>
+<circle cx="157.7" cy="288.6" r="3.2" class="dot"><title>row 17562: en 39, it 34</title></circle>
+<circle cx="83.6" cy="336.4" r="3.2" class="dot"><title>row 17602: en 10, it 13</title></circle>
+<circle cx="81.0" cy="338.7" r="3.2" class="dot"><title>row 17642: en 9, it 12</title></circle>
+<circle cx="111.7" cy="327.3" r="3.2" class="dot"><title>row 17683: en 21, it 17</title></circle>
+<circle cx="98.9" cy="336.4" r="3.2" class="dot"><title>row 17723: en 16, it 13</title></circle>
+<circle cx="78.5" cy="350.1" r="3.2" class="dot"><title>row 17764: en 8, it 7</title></circle>
+<circle cx="178.2" cy="275.0" r="3.2" class="dot"><title>row 17804: en 47, it 40</title></circle>
+<circle cx="78.5" cy="359.2" r="3.2" class="dot"><title>row 17845: en 8, it 3</title></circle>
+<circle cx="155.1" cy="297.7" r="3.2" class="dot"><title>row 17885: en 38, it 30</title></circle>
+<circle cx="81.0" cy="345.5" r="3.2" class="dot"><title>row 17926: en 9, it 9</title></circle>
+<circle cx="88.7" cy="347.8" r="3.2" class="dot"><title>row 17966: en 12, it 8</title></circle>
+<circle cx="188.4" cy="272.7" r="3.2" class="dot"><title>row 18007: en 51, it 41</title></circle>
+<circle cx="68.2" cy="343.2" r="3.2" class="dot"><title>row 18047: en 4, it 10</title></circle>
+<circle cx="83.6" cy="352.3" r="3.2" class="dot"><title>row 18088: en 10, it 6</title></circle>
+<circle cx="83.6" cy="347.8" r="3.2" class="dot"><title>row 18128: en 10, it 8</title></circle>
+<circle cx="121.9" cy="284.1" r="3.2" class="dot"><title>row 18168: en 25, it 36</title></circle>
+<circle cx="134.7" cy="315.9" r="3.2" class="dot"><title>row 18209: en 30, it 22</title></circle>
+<circle cx="81.0" cy="341.0" r="3.2" class="dot"><title>row 18249: en 9, it 11</title></circle>
+<circle cx="129.6" cy="295.4" r="3.2" class="dot"><title>row 18290: en 28, it 31</title></circle>
+<circle cx="134.7" cy="304.6" r="3.2" class="dot"><title>row 18330: en 30, it 27</title></circle>
+<circle cx="75.9" cy="347.8" r="3.2" class="dot"><title>row 18371: en 7, it 8</title></circle>
+<circle cx="178.2" cy="265.9" r="3.2" class="dot"><title>row 18411: en 47, it 44</title></circle>
+<circle cx="201.2" cy="236.3" r="3.2" class="dot"><title>row 18452: en 56, it 57</title></circle>
+<circle cx="313.6" cy="195.3" r="3.2" class="dot"><title>row 18492: en 100, it 75</title></circle>
+<circle cx="93.8" cy="329.6" r="3.2" class="dot"><title>row 18533: en 14, it 16</title></circle>
+<circle cx="109.1" cy="322.8" r="3.2" class="dot"><title>row 18573: en 20, it 19</title></circle>
+<circle cx="86.1" cy="336.4" r="3.2" class="dot"><title>row 18614: en 11, it 13</title></circle>
+<circle cx="132.1" cy="284.1" r="3.2" class="dot"><title>row 18654: en 29, it 36</title></circle>
+<circle cx="116.8" cy="311.4" r="3.2" class="dot"><title>row 18695: en 23, it 24</title></circle>
+<circle cx="175.6" cy="256.8" r="3.2" class="dot"><title>row 18735: en 46, it 48</title></circle>
+<circle cx="160.3" cy="265.9" r="3.2" class="dot"><title>row 18775: en 40, it 44</title></circle>
+<circle cx="175.6" cy="306.8" r="3.2" class="dot"><title>row 18816: en 46, it 26</title></circle>
+<circle cx="98.9" cy="329.6" r="3.2" class="dot"><title>row 18856: en 16, it 16</title></circle>
+<circle cx="88.7" cy="338.7" r="3.2" class="dot"><title>row 18897: en 12, it 12</title></circle>
+<circle cx="127.0" cy="309.1" r="3.2" class="dot"><title>row 18937: en 27, it 25</title></circle>
+<circle cx="147.5" cy="263.6" r="3.2" class="dot"><title>row 18978: en 35, it 45</title></circle>
+<circle cx="152.6" cy="313.7" r="3.2" class="dot"><title>row 19018: en 37, it 23</title></circle>
+<circle cx="173.0" cy="256.8" r="3.2" class="dot"><title>row 19059: en 45, it 48</title></circle>
+<circle cx="119.4" cy="313.7" r="3.2" class="dot"><title>row 19099: en 24, it 23</title></circle>
+<circle cx="73.3" cy="352.3" r="3.2" class="dot"><title>row 19140: en 6, it 6</title></circle>
+<circle cx="144.9" cy="295.4" r="3.2" class="dot"><title>row 19180: en 34, it 31</title></circle>
+<circle cx="81.0" cy="350.1" r="3.2" class="dot"><title>row 19221: en 9, it 7</title></circle>
+<circle cx="129.6" cy="297.7" r="3.2" class="dot"><title>row 19261: en 28, it 30</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 19301: en 7, it 7</title></circle>
+<circle cx="91.2" cy="343.2" r="3.2" class="dot"><title>row 19342: en 13, it 10</title></circle>
+<circle cx="81.0" cy="350.1" r="3.2" class="dot"><title>row 19382: en 9, it 7</title></circle>
+<circle cx="73.3" cy="347.8" r="3.2" class="dot"><title>row 19423: en 6, it 8</title></circle>
+<circle cx="88.7" cy="334.1" r="3.2" class="dot"><title>row 19463: en 12, it 14</title></circle>
+<circle cx="165.4" cy="272.7" r="3.2" class="dot"><title>row 19504: en 42, it 41</title></circle>
+<circle cx="111.7" cy="300.0" r="3.2" class="dot"><title>row 19544: en 21, it 29</title></circle>
+<circle cx="147.5" cy="286.3" r="3.2" class="dot"><title>row 19585: en 35, it 35</title></circle>
+<circle cx="114.2" cy="318.2" r="3.2" class="dot"><title>row 19625: en 22, it 21</title></circle>
+<circle cx="93.8" cy="322.8" r="3.2" class="dot"><title>row 19666: en 14, it 19</title></circle>
+<circle cx="157.7" cy="259.0" r="3.2" class="dot"><title>row 19706: en 39, it 47</title></circle>
+<circle cx="114.2" cy="311.4" r="3.2" class="dot"><title>row 19747: en 22, it 24</title></circle>
+<circle cx="101.5" cy="318.2" r="3.2" class="dot"><title>row 19787: en 17, it 21</title></circle>
+<circle cx="104.0" cy="331.9" r="3.2" class="dot"><title>row 19828: en 18, it 15</title></circle>
+<circle cx="101.5" cy="329.6" r="3.2" class="dot"><title>row 19868: en 17, it 16</title></circle>
+<circle cx="114.2" cy="318.2" r="3.2" class="dot"><title>row 19908: en 22, it 21</title></circle>
+<circle cx="124.5" cy="306.8" r="3.2" class="dot"><title>row 19949: en 26, it 26</title></circle>
+<circle cx="109.1" cy="334.1" r="3.2" class="dot"><title>row 19989: en 20, it 14</title></circle>
+<circle cx="91.2" cy="336.4" r="3.2" class="dot"><title>row 20030: en 13, it 13</title></circle>
+<circle cx="124.5" cy="311.4" r="3.2" class="dot"><title>row 20070: en 26, it 24</title></circle>
+<circle cx="96.3" cy="341.0" r="3.2" class="dot"><title>row 20111: en 15, it 11</title></circle>
+<circle cx="101.5" cy="322.8" r="3.2" class="dot"><title>row 20151: en 17, it 19</title></circle>
+<circle cx="111.7" cy="311.4" r="3.2" class="dot"><title>row 20192: en 21, it 24</title></circle>
+<circle cx="88.7" cy="345.5" r="3.2" class="dot"><title>row 20232: en 12, it 9</title></circle>
+<circle cx="116.8" cy="309.1" r="3.2" class="dot"><title>row 20273: en 23, it 25</title></circle>
+<circle cx="121.9" cy="300.0" r="3.2" class="dot"><title>row 20313: en 25, it 29</title></circle>
+<circle cx="144.9" cy="300.0" r="3.2" class="dot"><title>row 20354: en 34, it 29</title></circle>
+<circle cx="213.9" cy="211.2" r="3.2" class="dot"><title>row 20394: en 61, it 68</title></circle>
+<circle cx="83.6" cy="350.1" r="3.2" class="dot"><title>row 20434: en 10, it 7</title></circle>
+<circle cx="65.7" cy="359.2" r="3.2" class="dot"><title>row 20475: en 3, it 3</title></circle>
+<circle cx="121.9" cy="306.8" r="3.2" class="dot"><title>row 20515: en 25, it 26</title></circle>
+<circle cx="114.2" cy="315.9" r="3.2" class="dot"><title>row 20556: en 22, it 22</title></circle>
+<circle cx="75.9" cy="345.5" r="3.2" class="dot"><title>row 20596: en 7, it 9</title></circle>
+<circle cx="63.1" cy="363.7" r="3.2" class="dot"><title>row 20637: en 2, it 1</title></circle>
+<circle cx="106.6" cy="309.1" r="3.2" class="dot"><title>row 20677: en 19, it 25</title></circle>
+<circle cx="119.4" cy="325.0" r="3.2" class="dot"><title>row 20718: en 24, it 18</title></circle>
+<circle cx="70.8" cy="361.4" r="3.2" class="dot"><title>row 20758: en 5, it 2</title></circle>
+<circle cx="93.8" cy="336.4" r="3.2" class="dot"><title>row 20799: en 14, it 13</title></circle>
+<circle cx="75.9" cy="347.8" r="3.2" class="dot"><title>row 20839: en 7, it 8</title></circle>
+<circle cx="88.7" cy="341.0" r="3.2" class="dot"><title>row 20880: en 12, it 11</title></circle>
+<circle cx="132.1" cy="300.0" r="3.2" class="dot"><title>row 20920: en 29, it 29</title></circle>
+<circle cx="155.1" cy="270.4" r="3.2" class="dot"><title>row 20961: en 38, it 42</title></circle>
+<circle cx="178.2" cy="263.6" r="3.2" class="dot"><title>row 21001: en 47, it 45</title></circle>
+<circle cx="124.5" cy="318.2" r="3.2" class="dot"><title>row 21041: en 26, it 21</title></circle>
+<circle cx="109.1" cy="329.6" r="3.2" class="dot"><title>row 21082: en 20, it 16</title></circle>
+<circle cx="98.9" cy="315.9" r="3.2" class="dot"><title>row 21122: en 16, it 22</title></circle>
+<circle cx="203.7" cy="240.8" r="3.2" class="dot"><title>row 21163: en 57, it 55</title></circle>
+<circle cx="142.4" cy="300.0" r="3.2" class="dot"><title>row 21203: en 33, it 29</title></circle>
+<circle cx="106.6" cy="327.3" r="3.2" class="dot"><title>row 21244: en 19, it 17</title></circle>
+<circle cx="213.9" cy="220.3" r="3.2" class="dot"><title>row 21284: en 61, it 64</title></circle>
+<circle cx="81.0" cy="345.5" r="3.2" class="dot"><title>row 21325: en 9, it 9</title></circle>
+<circle cx="147.5" cy="277.2" r="3.2" class="dot"><title>row 21365: en 35, it 39</title></circle>
+<circle cx="155.1" cy="293.2" r="3.2" class="dot"><title>row 21406: en 38, it 32</title></circle>
+<circle cx="91.2" cy="336.4" r="3.2" class="dot"><title>row 21446: en 13, it 13</title></circle>
+<circle cx="127.0" cy="297.7" r="3.2" class="dot"><title>row 21487: en 27, it 30</title></circle>
+<circle cx="75.9" cy="352.3" r="3.2" class="dot"><title>row 21527: en 7, it 6</title></circle>
+<circle cx="139.8" cy="318.2" r="3.2" class="dot"><title>row 21567: en 32, it 21</title></circle>
+<circle cx="63.1" cy="361.4" r="3.2" class="dot"><title>row 21608: en 2, it 2</title></circle>
+<circle cx="78.5" cy="334.1" r="3.2" class="dot"><title>row 21648: en 8, it 14</title></circle>
+<circle cx="119.4" cy="334.1" r="3.2" class="dot"><title>row 21689: en 24, it 14</title></circle>
+<circle cx="134.7" cy="284.1" r="3.2" class="dot"><title>row 21729: en 30, it 36</title></circle>
+<circle cx="81.0" cy="338.7" r="3.2" class="dot"><title>row 21770: en 9, it 12</title></circle>
+<circle cx="142.4" cy="300.0" r="3.2" class="dot"><title>row 21810: en 33, it 29</title></circle>
+<circle cx="104.0" cy="331.9" r="3.2" class="dot"><title>row 21851: en 18, it 15</title></circle>
+<circle cx="75.9" cy="347.8" r="3.2" class="dot"><title>row 21891: en 7, it 8</title></circle>
+<circle cx="260.0" cy="211.2" r="3.2" class="dot"><title>row 21932: en 79, it 68</title></circle>
+<circle cx="104.0" cy="313.7" r="3.2" class="dot"><title>row 21972: en 18, it 23</title></circle>
+<circle cx="116.8" cy="327.3" r="3.2" class="dot"><title>row 22013: en 23, it 17</title></circle>
+<circle cx="124.5" cy="302.3" r="3.2" class="dot"><title>row 22053: en 26, it 28</title></circle>
+<circle cx="147.5" cy="295.4" r="3.2" class="dot"><title>row 22094: en 35, it 31</title></circle>
+<circle cx="165.4" cy="259.0" r="3.2" class="dot"><title>row 22134: en 42, it 47</title></circle>
+<circle cx="96.3" cy="327.3" r="3.2" class="dot"><title>row 22174: en 15, it 17</title></circle>
+<circle cx="121.9" cy="320.5" r="3.2" class="dot"><title>row 22215: en 25, it 20</title></circle>
+<circle cx="124.5" cy="315.9" r="3.2" class="dot"><title>row 22255: en 26, it 22</title></circle>
+<circle cx="83.6" cy="345.5" r="3.2" class="dot"><title>row 22296: en 10, it 9</title></circle>
+<circle cx="86.1" cy="338.7" r="3.2" class="dot"><title>row 22336: en 11, it 12</title></circle>
+<circle cx="150.0" cy="279.5" r="3.2" class="dot"><title>row 22377: en 36, it 38</title></circle>
+<circle cx="178.2" cy="247.7" r="3.2" class="dot"><title>row 22417: en 47, it 52</title></circle>
+<circle cx="75.9" cy="354.6" r="3.2" class="dot"><title>row 22458: en 7, it 5</title></circle>
+<circle cx="96.3" cy="338.7" r="3.2" class="dot"><title>row 22498: en 15, it 12</title></circle>
+<circle cx="86.1" cy="343.2" r="3.2" class="dot"><title>row 22539: en 11, it 10</title></circle>
+<circle cx="127.0" cy="295.4" r="3.2" class="dot"><title>row 22579: en 27, it 31</title></circle>
+<circle cx="73.3" cy="356.9" r="3.2" class="dot"><title>row 22620: en 6, it 4</title></circle>
+<circle cx="167.9" cy="279.5" r="3.2" class="dot"><title>row 22660: en 43, it 38</title></circle>
+<circle cx="109.1" cy="329.6" r="3.2" class="dot"><title>row 22700: en 20, it 16</title></circle>
+<circle cx="165.4" cy="277.2" r="3.2" class="dot"><title>row 22741: en 42, it 39</title></circle>
+<circle cx="104.0" cy="327.3" r="3.2" class="dot"><title>row 22781: en 18, it 17</title></circle>
+<circle cx="144.9" cy="329.6" r="3.2" class="dot"><title>row 22822: en 34, it 16</title></circle>
+<circle cx="185.8" cy="295.4" r="3.2" class="dot"><title>row 22862: en 50, it 31</title></circle>
+<circle cx="70.8" cy="352.3" r="3.2" class="dot"><title>row 22903: en 5, it 6</title></circle>
+<circle cx="96.3" cy="329.6" r="3.2" class="dot"><title>row 22943: en 15, it 16</title></circle>
+<circle cx="124.5" cy="318.2" r="3.2" class="dot"><title>row 22984: en 26, it 21</title></circle>
+<circle cx="170.5" cy="286.3" r="3.2" class="dot"><title>row 23024: en 44, it 35</title></circle>
+<circle cx="293.2" cy="165.7" r="3.2" class="dot"><title>row 23065: en 92, it 88</title></circle>
+<circle cx="96.3" cy="336.4" r="3.2" class="dot"><title>row 23105: en 15, it 13</title></circle>
+<circle cx="155.1" cy="288.6" r="3.2" class="dot"><title>row 23146: en 38, it 34</title></circle>
+<circle cx="109.1" cy="318.2" r="3.2" class="dot"><title>row 23186: en 20, it 21</title></circle>
+<circle cx="68.2" cy="354.6" r="3.2" class="dot"><title>row 23227: en 4, it 5</title></circle>
+<circle cx="78.5" cy="343.2" r="3.2" class="dot"><title>row 23267: en 8, it 10</title></circle>
+<circle cx="206.3" cy="213.5" r="3.2" class="dot"><title>row 23307: en 58, it 67</title></circle>
+<circle cx="81.0" cy="341.0" r="3.2" class="dot"><title>row 23348: en 9, it 11</title></circle>
+<circle cx="101.5" cy="334.1" r="3.2" class="dot"><title>row 23388: en 17, it 14</title></circle>
+<circle cx="68.2" cy="354.6" r="3.2" class="dot"><title>row 23429: en 4, it 5</title></circle>
+<circle cx="75.9" cy="356.9" r="3.2" class="dot"><title>row 23469: en 7, it 4</title></circle>
+<circle cx="70.8" cy="352.3" r="3.2" class="dot"><title>row 23510: en 5, it 6</title></circle>
+<circle cx="86.1" cy="331.9" r="3.2" class="dot"><title>row 23550: en 11, it 15</title></circle>
+<circle cx="70.8" cy="352.3" r="3.2" class="dot"><title>row 23591: en 5, it 6</title></circle>
+<circle cx="86.1" cy="345.5" r="3.2" class="dot"><title>row 23631: en 11, it 9</title></circle>
+<circle cx="91.2" cy="343.2" r="3.2" class="dot"><title>row 23672: en 13, it 10</title></circle>
+<circle cx="96.3" cy="304.6" r="3.2" class="dot"><title>row 23712: en 15, it 27</title></circle>
+<circle cx="78.5" cy="347.8" r="3.2" class="dot"><title>row 23753: en 8, it 8</title></circle>
+<circle cx="180.7" cy="249.9" r="3.2" class="dot"><title>row 23793: en 48, it 51</title></circle>
+<circle cx="86.1" cy="325.0" r="3.2" class="dot"><title>row 23833: en 11, it 18</title></circle>
+<circle cx="93.8" cy="318.2" r="3.2" class="dot"><title>row 23874: en 14, it 21</title></circle>
+<circle cx="98.9" cy="331.9" r="3.2" class="dot"><title>row 23914: en 16, it 15</title></circle>
+<circle cx="73.3" cy="352.3" r="3.2" class="dot"><title>row 23955: en 6, it 6</title></circle>
+<circle cx="106.6" cy="334.1" r="3.2" class="dot"><title>row 23995: en 19, it 14</title></circle>
+<circle cx="127.0" cy="320.5" r="3.2" class="dot"><title>row 24036: en 27, it 20</title></circle>
+<circle cx="155.1" cy="281.8" r="3.2" class="dot"><title>row 24076: en 38, it 37</title></circle>
+<circle cx="75.9" cy="352.3" r="3.2" class="dot"><title>row 24117: en 7, it 6</title></circle>
+<circle cx="150.0" cy="265.9" r="3.2" class="dot"><title>row 24157: en 36, it 44</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 24198: en 7, it 7</title></circle>
+<circle cx="75.9" cy="345.5" r="3.2" class="dot"><title>row 24238: en 7, it 9</title></circle>
+<circle cx="198.6" cy="249.9" r="3.2" class="dot"><title>row 24279: en 55, it 51</title></circle>
+<circle cx="114.2" cy="315.9" r="3.2" class="dot"><title>row 24319: en 22, it 22</title></circle>
+<circle cx="88.7" cy="341.0" r="3.2" class="dot"><title>row 24360: en 12, it 11</title></circle>
+<circle cx="81.0" cy="347.8" r="3.2" class="dot"><title>row 24400: en 9, it 8</title></circle>
+<circle cx="109.1" cy="338.7" r="3.2" class="dot"><title>row 24440: en 20, it 12</title></circle>
+<circle cx="101.5" cy="329.6" r="3.2" class="dot"><title>row 24481: en 17, it 16</title></circle>
+<circle cx="173.0" cy="270.4" r="3.2" class="dot"><title>row 24521: en 45, it 42</title></circle>
+<circle cx="96.3" cy="322.8" r="3.2" class="dot"><title>row 24562: en 15, it 19</title></circle>
+<circle cx="142.4" cy="290.9" r="3.2" class="dot"><title>row 24602: en 33, it 33</title></circle>
+<circle cx="86.1" cy="345.5" r="3.2" class="dot"><title>row 24643: en 11, it 9</title></circle>
+<circle cx="142.4" cy="293.2" r="3.2" class="dot"><title>row 24683: en 33, it 32</title></circle>
+<circle cx="155.1" cy="270.4" r="3.2" class="dot"><title>row 24724: en 38, it 42</title></circle>
+<circle cx="78.5" cy="345.5" r="3.2" class="dot"><title>row 24764: en 8, it 9</title></circle>
+<circle cx="68.2" cy="356.9" r="3.2" class="dot"><title>row 24805: en 4, it 4</title></circle>
+<circle cx="206.3" cy="243.1" r="3.2" class="dot"><title>row 24845: en 58, it 54</title></circle>
+<circle cx="91.2" cy="336.4" r="3.2" class="dot"><title>row 24886: en 13, it 13</title></circle>
+<circle cx="180.7" cy="245.4" r="3.2" class="dot"><title>row 24926: en 48, it 53</title></circle>
+<circle cx="83.6" cy="347.8" r="3.2" class="dot"><title>row 24966: en 10, it 8</title></circle>
+<circle cx="239.5" cy="186.2" r="3.2" class="dot"><title>row 25007: en 71, it 79</title></circle>
+<circle cx="134.7" cy="306.8" r="3.2" class="dot"><title>row 25047: en 30, it 26</title></circle>
+<circle cx="91.2" cy="331.9" r="3.2" class="dot"><title>row 25088: en 13, it 15</title></circle>
+<circle cx="83.6" cy="350.1" r="3.2" class="dot"><title>row 25128: en 10, it 7</title></circle>
+<circle cx="73.3" cy="359.2" r="3.2" class="dot"><title>row 25169: en 6, it 3</title></circle>
+<circle cx="104.0" cy="334.1" r="3.2" class="dot"><title>row 25209: en 18, it 14</title></circle>
+<circle cx="93.8" cy="318.2" r="3.2" class="dot"><title>row 25250: en 14, it 21</title></circle>
+<circle cx="167.9" cy="277.2" r="3.2" class="dot"><title>row 25290: en 43, it 39</title></circle>
+<circle cx="155.1" cy="286.3" r="3.2" class="dot"><title>row 25331: en 38, it 35</title></circle>
+<circle cx="83.6" cy="334.1" r="3.2" class="dot"><title>row 25371: en 10, it 14</title></circle>
+<circle cx="75.9" cy="352.3" r="3.2" class="dot"><title>row 25412: en 7, it 6</title></circle>
+<circle cx="127.0" cy="309.1" r="3.2" class="dot"><title>row 25452: en 27, it 25</title></circle>
+<circle cx="121.9" cy="302.3" r="3.2" class="dot"><title>row 25493: en 25, it 28</title></circle>
+<circle cx="142.4" cy="265.9" r="3.2" class="dot"><title>row 25533: en 33, it 44</title></circle>
+<circle cx="96.3" cy="331.9" r="3.2" class="dot"><title>row 25573: en 15, it 15</title></circle>
+<circle cx="196.0" cy="229.4" r="3.2" class="dot"><title>row 25614: en 54, it 60</title></circle>
+<circle cx="98.9" cy="336.4" r="3.2" class="dot"><title>row 25654: en 16, it 13</title></circle>
+<circle cx="152.6" cy="270.4" r="3.2" class="dot"><title>row 25695: en 37, it 42</title></circle>
+<circle cx="152.6" cy="277.2" r="3.2" class="dot"><title>row 25735: en 37, it 39</title></circle>
+<circle cx="170.5" cy="240.8" r="3.2" class="dot"><title>row 25776: en 44, it 55</title></circle>
+<circle cx="81.0" cy="352.3" r="3.2" class="dot"><title>row 25816: en 9, it 6</title></circle>
+<circle cx="127.0" cy="288.6" r="3.2" class="dot"><title>row 25857: en 27, it 34</title></circle>
+<circle cx="78.5" cy="347.8" r="3.2" class="dot"><title>row 25897: en 8, it 8</title></circle>
+<circle cx="267.6" cy="202.1" r="3.2" class="dot"><title>row 25938: en 82, it 72</title></circle>
+<circle cx="160.3" cy="293.2" r="3.2" class="dot"><title>row 25978: en 40, it 32</title></circle>
+<circle cx="134.7" cy="284.1" r="3.2" class="dot"><title>row 26019: en 30, it 36</title></circle>
+<circle cx="129.6" cy="286.3" r="3.2" class="dot"><title>row 26059: en 28, it 35</title></circle>
+<circle cx="224.2" cy="231.7" r="3.2" class="dot"><title>row 26099: en 65, it 59</title></circle>
+<circle cx="132.1" cy="309.1" r="3.2" class="dot"><title>row 26140: en 29, it 25</title></circle>
+<circle cx="142.4" cy="290.9" r="3.2" class="dot"><title>row 26180: en 33, it 33</title></circle>
+<circle cx="119.4" cy="331.9" r="3.2" class="dot"><title>row 26221: en 24, it 15</title></circle>
+<circle cx="86.1" cy="345.5" r="3.2" class="dot"><title>row 26261: en 11, it 9</title></circle>
+<circle cx="68.2" cy="354.6" r="3.2" class="dot"><title>row 26302: en 4, it 5</title></circle>
+<circle cx="175.6" cy="268.1" r="3.2" class="dot"><title>row 26342: en 46, it 43</title></circle>
+<circle cx="75.9" cy="350.1" r="3.2" class="dot"><title>row 26383: en 7, it 7</title></circle>
+<circle cx="86.1" cy="352.3" r="3.2" class="dot"><title>row 26423: en 11, it 6</title></circle>
+<circle cx="116.8" cy="297.7" r="3.2" class="dot"><title>row 26464: en 23, it 30</title></circle>
+<circle cx="178.2" cy="268.1" r="3.2" class="dot"><title>row 26504: en 47, it 43</title></circle>
+<circle cx="86.1" cy="341.0" r="3.2" class="dot"><title>row 26545: en 11, it 11</title></circle>
+<circle cx="121.9" cy="313.7" r="3.2" class="dot"><title>row 26585: en 25, it 23</title></circle>
+<circle cx="70.8" cy="350.1" r="3.2" class="dot"><title>row 26626: en 5, it 7</title></circle>
+<circle cx="73.3" cy="354.6" r="3.2" class="dot"><title>row 26666: en 6, it 5</title></circle>
+<circle cx="155.1" cy="275.0" r="3.2" class="dot"><title>row 26706: en 38, it 40</title></circle>
+<circle cx="124.5" cy="300.0" r="3.2" class="dot"><title>row 26747: en 26, it 29</title></circle>
+<circle cx="88.7" cy="345.5" r="3.2" class="dot"><title>row 26787: en 12, it 9</title></circle>
+<circle cx="106.6" cy="325.0" r="3.2" class="dot"><title>row 26828: en 19, it 18</title></circle>
+<circle cx="78.5" cy="352.3" r="3.2" class="dot"><title>row 26868: en 8, it 6</title></circle>
+<circle cx="114.2" cy="331.9" r="3.2" class="dot"><title>row 26909: en 22, it 15</title></circle>
+<circle cx="109.1" cy="331.9" r="3.2" class="dot"><title>row 26949: en 20, it 15</title></circle>
+<circle cx="81.0" cy="347.8" r="3.2" class="dot"><title>row 26990: en 9, it 8</title></circle>
+<circle cx="78.5" cy="341.0" r="3.2" class="dot"><title>row 27030: en 8, it 11</title></circle>
+<circle cx="78.5" cy="347.8" r="3.2" class="dot"><title>row 27071: en 8, it 8</title></circle>
+<circle cx="201.2" cy="206.7" r="3.2" class="dot"><title>row 27111: en 56, it 70</title></circle>
+<circle cx="78.5" cy="347.8" r="3.2" class="dot"><title>row 27152: en 8, it 8</title></circle>
+<circle cx="142.4" cy="304.6" r="3.2" class="dot"><title>row 27192: en 33, it 27</title></circle>
+<circle cx="129.6" cy="313.7" r="3.2" class="dot"><title>row 27232: en 28, it 23</title></circle>
+<circle cx="83.6" cy="341.0" r="3.2" class="dot"><title>row 27273: en 10, it 11</title></circle>
+<circle cx="65.7" cy="359.2" r="3.2" class="dot"><title>row 27313: en 3, it 3</title></circle>
+<circle cx="139.8" cy="281.8" r="3.2" class="dot"><title>row 27354: en 32, it 37</title></circle>
+<circle cx="81.0" cy="343.2" r="3.2" class="dot"><title>row 27394: en 9, it 10</title></circle>
+<circle cx="91.2" cy="322.8" r="3.2" class="dot"><title>row 27435: en 13, it 19</title></circle>
+<circle cx="147.5" cy="288.6" r="3.2" class="dot"><title>row 27475: en 35, it 34</title></circle>
+<circle cx="175.6" cy="265.9" r="3.2" class="dot"><title>row 27516: en 46, it 44</title></circle>
+<circle cx="106.6" cy="309.1" r="3.2" class="dot"><title>row 27556: en 19, it 25</title></circle>
+<circle cx="157.7" cy="270.4" r="3.2" class="dot"><title>row 27597: en 39, it 42</title></circle>
+<circle cx="109.1" cy="318.2" r="3.2" class="dot"><title>row 27637: en 20, it 21</title></circle>
+<circle cx="81.0" cy="336.4" r="3.2" class="dot"><title>row 27678: en 9, it 13</title></circle>
+<circle cx="73.3" cy="350.1" r="3.2" class="dot"><title>row 27718: en 6, it 7</title></circle>
+<circle cx="124.5" cy="315.9" r="3.2" class="dot"><title>row 27759: en 26, it 22</title></circle>
+<circle cx="170.5" cy="263.6" r="3.2" class="dot"><title>row 27799: en 44, it 45</title></circle>
+<circle cx="121.9" cy="311.4" r="3.2" class="dot"><title>row 27839: en 25, it 24</title></circle>
+<circle cx="73.3" cy="356.9" r="3.2" class="dot"><title>row 27880: en 6, it 4</title></circle>
+<circle cx="75.9" cy="359.2" r="3.2" class="dot"><title>row 27920: en 7, it 3</title></circle>
+<circle cx="198.6" cy="249.9" r="3.2" class="dot"><title>row 27961: en 55, it 51</title></circle>
+<circle cx="139.8" cy="304.6" r="3.2" class="dot"><title>row 28001: en 32, it 27</title></circle>
+<circle cx="142.4" cy="302.3" r="3.2" class="dot"><title>row 28042: en 33, it 28</title></circle>
+<circle cx="129.6" cy="302.3" r="3.2" class="dot"><title>row 28082: en 28, it 28</title></circle>
+<circle cx="98.9" cy="329.6" r="3.2" class="dot"><title>row 28123: en 16, it 16</title></circle>
+<circle cx="81.0" cy="336.4" r="3.2" class="dot"><title>row 28163: en 9, it 13</title></circle>
+<circle cx="206.3" cy="209.0" r="3.2" class="dot"><title>row 28204: en 58, it 69</title></circle>
+<circle cx="83.6" cy="347.8" r="3.2" class="dot"><title>row 28244: en 10, it 8</title></circle>
+<circle cx="196.0" cy="231.7" r="3.2" class="dot"><title>row 28285: en 54, it 59</title></circle>
+<circle cx="75.9" cy="352.3" r="3.2" class="dot"><title>row 28325: en 7, it 6</title></circle>
+<circle cx="91.2" cy="341.0" r="3.2" class="dot"><title>row 28365: en 13, it 11</title></circle>
+<circle cx="73.3" cy="352.3" r="3.2" class="dot"><title>row 28406: en 6, it 6</title></circle>
+<circle cx="78.5" cy="350.1" r="3.2" class="dot"><title>row 28446: en 8, it 7</title></circle>
+<circle cx="104.0" cy="309.1" r="3.2" class="dot"><title>row 28487: en 18, it 25</title></circle>
+<circle cx="175.6" cy="261.3" r="3.2" class="dot"><title>row 28527: en 46, it 46</title></circle>
+<circle cx="121.9" cy="313.7" r="3.2" class="dot"><title>row 28568: en 25, it 23</title></circle>
+<circle cx="198.6" cy="261.3" r="3.2" class="dot"><title>row 28608: en 55, it 46</title></circle>
+<circle cx="183.3" cy="252.2" r="3.2" class="dot"><title>row 28649: en 49, it 50</title></circle>
+<circle cx="144.9" cy="302.3" r="3.2" class="dot"><title>row 28689: en 34, it 28</title></circle>
+<circle cx="132.1" cy="277.2" r="3.2" class="dot"><title>row 28730: en 29, it 39</title></circle>
+<circle cx="86.1" cy="338.7" r="3.2" class="dot"><title>row 28770: en 11, it 12</title></circle>
+<circle cx="93.8" cy="338.7" r="3.2" class="dot"><title>row 28811: en 14, it 12</title></circle>
+<circle cx="104.0" cy="327.3" r="3.2" class="dot"><title>row 28851: en 18, it 17</title></circle>
+<circle cx="160.3" cy="295.4" r="3.2" class="dot"><title>row 28892: en 40, it 31</title></circle>
+<circle cx="88.7" cy="338.7" r="3.2" class="dot"><title>row 28932: en 12, it 12</title></circle>
+<circle cx="193.5" cy="252.2" r="3.2" class="dot"><title>row 28972: en 53, it 50</title></circle>
+<circle cx="63.1" cy="363.7" r="3.2" class="dot"><title>row 29013: en 2, it 1</title></circle>
+<circle cx="137.2" cy="302.3" r="3.2" class="dot"><title>row 29053: en 31, it 28</title></circle>
+<circle cx="73.3" cy="359.2" r="3.2" class="dot"><title>row 29094: en 6, it 3</title></circle>
+<circle cx="173.0" cy="268.1" r="3.2" class="dot"><title>row 29134: en 45, it 43</title></circle>
+<circle cx="70.8" cy="354.6" r="3.2" class="dot"><title>row 29175: en 5, it 5</title></circle>
+<circle cx="96.3" cy="327.3" r="3.2" class="dot"><title>row 29215: en 15, it 17</title></circle>
+<circle cx="109.1" cy="293.2" r="3.2" class="dot"><title>row 29256: en 20, it 32</title></circle>
+<circle cx="124.5" cy="315.9" r="3.2" class="dot"><title>row 29296: en 26, it 22</title></circle>
+<circle cx="83.6" cy="350.1" r="3.2" class="dot"><title>row 29337: en 10, it 7</title></circle>
+<circle cx="155.1" cy="284.1" r="3.2" class="dot"><title>row 29377: en 38, it 36</title></circle>
+<circle cx="155.1" cy="290.9" r="3.2" class="dot"><title>row 29418: en 38, it 33</title></circle>
+<circle cx="203.7" cy="284.1" r="3.2" class="dot"><title>row 29458: en 57, it 36</title></circle>
+<circle cx="167.9" cy="256.8" r="3.2" class="dot"><title>row 29498: en 43, it 48</title></circle>
+<circle cx="98.9" cy="343.2" r="3.2" class="dot"><title>row 29539: en 16, it 10</title></circle>
+<circle cx="132.1" cy="302.3" r="3.2" class="dot"><title>row 29579: en 29, it 28</title></circle>
+<circle cx="86.1" cy="338.7" r="3.2" class="dot"><title>row 29620: en 11, it 12</title></circle>
+<circle cx="111.7" cy="311.4" r="3.2" class="dot"><title>row 29660: en 21, it 24</title></circle>
+<circle cx="93.8" cy="329.6" r="3.2" class="dot"><title>row 29701: en 14, it 16</title></circle>
+<circle cx="101.5" cy="320.5" r="3.2" class="dot"><title>row 29741: en 17, it 20</title></circle>
+<circle cx="104.0" cy="320.5" r="3.2" class="dot"><title>row 29782: en 18, it 20</title></circle>
+<circle cx="63.1" cy="363.7" r="3.2" class="dot"><title>row 29822: en 2, it 1</title></circle>
+<circle cx="249.7" cy="188.5" r="3.2" class="dot"><title>row 29863: en 75, it 78</title></circle>
+<circle cx="81.0" cy="352.3" r="3.2" class="dot"><title>row 29903: en 9, it 6</title></circle>
+<circle cx="119.4" cy="302.3" r="3.2" class="dot"><title>row 29944: en 24, it 28</title></circle>
+<circle cx="142.4" cy="306.8" r="3.2" class="dot"><title>row 29984: en 33, it 26</title></circle>
+<circle cx="116.8" cy="325.0" r="3.2" class="dot"><title>row 30025: en 23, it 18</title></circle>
+<circle cx="226.7" cy="240.8" r="3.2" class="dot"><title>row 30065: en 66, it 55</title></circle>
+<circle cx="78.5" cy="350.1" r="3.2" class="dot"><title>row 30105: en 8, it 7</title></circle>
+<circle cx="81.0" cy="350.1" r="3.2" class="dot"><title>row 30146: en 9, it 7</title></circle>
+<circle cx="142.4" cy="288.6" r="3.2" class="dot"><title>row 30186: en 33, it 34</title></circle>
+<circle cx="142.4" cy="275.0" r="3.2" class="dot"><title>row 30227: en 33, it 40</title></circle>
+<circle cx="81.0" cy="345.5" r="3.2" class="dot"><title>row 30267: en 9, it 9</title></circle>
+<circle cx="119.4" cy="295.4" r="3.2" class="dot"><title>row 30308: en 24, it 31</title></circle>
+<circle cx="86.1" cy="352.3" r="3.2" class="dot"><title>row 30348: en 11, it 6</title></circle>
+<circle cx="86.1" cy="341.0" r="3.2" class="dot"><title>row 30389: en 11, it 11</title></circle>
+<circle cx="91.2" cy="325.0" r="3.2" class="dot"><title>row 30429: en 13, it 18</title></circle>
+<circle cx="134.7" cy="302.3" r="3.2" class="dot"><title>row 30470: en 30, it 28</title></circle>
+<circle cx="203.7" cy="224.9" r="3.2" class="dot"><title>row 30510: en 57, it 62</title></circle>
+<circle cx="91.2" cy="329.6" r="3.2" class="dot"><title>row 30551: en 13, it 16</title></circle>
+<circle cx="129.6" cy="295.4" r="3.2" class="dot"><title>row 30591: en 28, it 31</title></circle>
+<circle cx="162.8" cy="265.9" r="3.2" class="dot"><title>row 30631: en 41, it 44</title></circle>
+<circle cx="144.9" cy="288.6" r="3.2" class="dot"><title>row 30672: en 34, it 34</title></circle>
+<circle cx="114.2" cy="313.7" r="3.2" class="dot"><title>row 30712: en 22, it 23</title></circle>
+<circle cx="104.0" cy="327.3" r="3.2" class="dot"><title>row 30753: en 18, it 17</title></circle>
+<circle cx="165.4" cy="275.0" r="3.2" class="dot"><title>row 30793: en 42, it 40</title></circle>
+<circle cx="170.5" cy="293.2" r="3.2" class="dot"><title>row 30834: en 44, it 32</title></circle>
+<circle cx="75.9" cy="352.3" r="3.2" class="dot"><title>row 30874: en 7, it 6</title></circle>
+<circle cx="119.4" cy="329.6" r="3.2" class="dot"><title>row 30915: en 24, it 16</title></circle>
+<circle cx="68.2" cy="356.9" r="3.2" class="dot"><title>row 30955: en 4, it 4</title></circle>
+<circle cx="150.0" cy="268.1" r="3.2" class="dot"><title>row 30996: en 36, it 43</title></circle>
+<circle cx="78.5" cy="352.3" r="3.2" class="dot"><title>row 31036: en 8, it 6</title></circle>
+<circle cx="70.8" cy="352.3" r="3.2" class="dot"><title>row 31077: en 5, it 6</title></circle>
+<circle cx="81.0" cy="345.5" r="3.2" class="dot"><title>row 31117: en 9, it 9</title></circle>
+<circle cx="91.2" cy="341.0" r="3.2" class="dot"><title>row 31158: en 13, it 11</title></circle>
+<circle cx="91.2" cy="350.1" r="3.2" class="dot"><title>row 31198: en 13, it 7</title></circle>
+<circle cx="101.5" cy="313.7" r="3.2" class="dot"><title>row 31238: en 17, it 23</title></circle>
+<circle cx="91.2" cy="334.1" r="3.2" class="dot"><title>row 31279: en 13, it 14</title></circle>
+<circle cx="101.5" cy="322.8" r="3.2" class="dot"><title>row 31319: en 17, it 19</title></circle>
+<circle cx="93.8" cy="322.8" r="3.2" class="dot"><title>row 31360: en 14, it 19</title></circle>
+<circle cx="83.6" cy="345.5" r="3.2" class="dot"><title>row 31400: en 10, it 9</title></circle>
+<circle cx="73.3" cy="354.6" r="3.2" class="dot"><title>row 31441: en 6, it 5</title></circle>
+<circle cx="68.2" cy="350.1" r="3.2" class="dot"><title>row 31481: en 4, it 7</title></circle>
+<circle cx="106.6" cy="318.2" r="3.2" class="dot"><title>row 31522: en 19, it 21</title></circle>
+<circle cx="78.5" cy="350.1" r="3.2" class="dot"><title>row 31562: en 8, it 7</title></circle>
+<circle cx="111.7" cy="318.2" r="3.2" class="dot"><title>row 31603: en 21, it 21</title></circle>
+<circle cx="134.7" cy="295.4" r="3.2" class="dot"><title>row 31643: en 30, it 31</title></circle>
+<circle cx="157.7" cy="277.2" r="3.2" class="dot"><title>row 31684: en 39, it 39</title></circle>
+<circle cx="86.1" cy="336.4" r="3.2" class="dot"><title>row 31724: en 11, it 13</title></circle>
+<circle cx="114.2" cy="320.5" r="3.2" class="dot"><title>row 31764: en 22, it 20</title></circle>
+<circle cx="104.0" cy="327.3" r="3.2" class="dot"><title>row 31805: en 18, it 17</title></circle>
+<circle cx="155.1" cy="272.7" r="3.2" class="dot"><title>row 31845: en 38, it 41</title></circle>
+<circle cx="63.1" cy="363.7" r="3.2" class="dot"><title>row 31886: en 2, it 1</title></circle>
+<circle cx="86.1" cy="345.5" r="3.2" class="dot"><title>row 31926: en 11, it 9</title></circle>
+<circle cx="101.5" cy="329.6" r="3.2" class="dot"><title>row 31967: en 17, it 16</title></circle>
+<circle cx="96.3" cy="334.1" r="3.2" class="dot"><title>row 32007: en 15, it 14</title></circle>
+<circle cx="78.5" cy="350.1" r="3.2" class="dot"><title>row 32048: en 8, it 7</title></circle>
+<circle cx="86.1" cy="343.2" r="3.2" class="dot"><title>row 32088: en 11, it 10</title></circle>
+<circle cx="73.3" cy="352.3" r="3.2" class="dot"><title>row 32129: en 6, it 6</title></circle>
+<circle cx="109.1" cy="336.4" r="3.2" class="dot"><title>row 32169: en 20, it 13</title></circle>
+<circle cx="68.2" cy="356.9" r="3.2" class="dot"><title>row 32210: en 4, it 4</title></circle>
+<circle cx="104.0" cy="325.0" r="3.2" class="dot"><title>row 32250: en 18, it 18</title></circle>
+<circle cx="86.1" cy="336.4" r="3.2" class="dot"><title>row 32291: en 11, it 13</title></circle>
+<circle cx="380.1" cy="77.0" r="3.2" class="dot"><title>row 32331: en 126, it 127</title></circle>
+<text x="380.0" y="410" class="axis-label" text-anchor="middle">English tokens</text>
+<text x="16" y="210.0" class="axis-label" transform="rotate(-90 16,210.0)" text-anchor="middle">Italian tokens</text>
+</svg>
+      </section>
+      <section class="panel">
+        <svg viewBox="0 0 760 280" role="img" aria-label="English word length distribution">
+<text x="54" y="22" class="chart-title">English word length distribution</text>
+<line x1="54" y1="234" x2="742" y2="234" class="axis" />
+<line x1="54" y1="34" x2="54" y2="234" class="axis" />
+<line x1="54" y1="234.0" x2="742" y2="234.0" class="grid" />
+<text x="44" y="238.0" class="tick" text-anchor="end">0</text>
+<line x1="54" y1="184.0" x2="742" y2="184.0" class="grid" />
+<text x="44" y="188.0" class="tick" text-anchor="end">55</text>
+<line x1="54" y1="134.0" x2="742" y2="134.0" class="grid" />
+<text x="44" y="138.0" class="tick" text-anchor="end">110</text>
+<line x1="54" y1="84.0" x2="742" y2="84.0" class="grid" />
+<text x="44" y="88.0" class="tick" text-anchor="end">164</text>
+<line x1="54" y1="34.0" x2="742" y2="34.0" class="grid" />
+<text x="44" y="38.0" class="tick" text-anchor="end">219</text>
+<rect x="55.0" y="38.6" width="26.7" height="195.4" fill="var(--blue)" opacity="0.82" />
+<text x="55.0" y="262" class="tick" transform="rotate(45 55.0,262)">0</text>
+<rect x="83.7" y="34.0" width="26.7" height="200.0" fill="var(--blue)" opacity="0.82" />
+<rect x="112.3" y="101.6" width="26.7" height="132.4" fill="var(--blue)" opacity="0.82" />
+<rect x="141.0" y="140.8" width="26.7" height="93.2" fill="var(--blue)" opacity="0.82" />
+<text x="141.0" y="262" class="tick" transform="rotate(45 141.0,262)">30</text>
+<rect x="169.7" y="196.6" width="26.7" height="37.4" fill="var(--blue)" opacity="0.82" />
+<rect x="198.3" y="204.8" width="26.7" height="29.2" fill="var(--blue)" opacity="0.82" />
+<rect x="227.0" y="225.8" width="26.7" height="8.2" fill="var(--blue)" opacity="0.82" />
+<text x="227.0" y="262" class="tick" transform="rotate(45 227.0,262)">60</text>
+<rect x="255.7" y="224.9" width="26.7" height="9.1" fill="var(--blue)" opacity="0.82" />
+<rect x="284.3" y="226.7" width="26.7" height="7.3" fill="var(--blue)" opacity="0.82" />
+<rect x="313.0" y="225.8" width="26.7" height="8.2" fill="var(--blue)" opacity="0.82" />
+<text x="313.0" y="262" class="tick" transform="rotate(45 313.0,262)">90</text>
+<rect x="341.7" y="230.3" width="26.7" height="3.7" fill="var(--blue)" opacity="0.82" />
+<rect x="370.3" y="230.3" width="26.7" height="3.7" fill="var(--blue)" opacity="0.82" />
+<rect x="399.0" y="233.1" width="26.7" height="0.9" fill="var(--blue)" opacity="0.82" />
+<text x="399.0" y="262" class="tick" transform="rotate(45 399.0,262)">120</text>
+<rect x="427.7" y="234.0" width="26.7" height="0.0" fill="var(--blue)" opacity="0.82" />
+<rect x="456.3" y="234.0" width="26.7" height="0.0" fill="var(--blue)" opacity="0.82" />
+<rect x="485.0" y="233.1" width="26.7" height="0.9" fill="var(--blue)" opacity="0.82" />
+<text x="485.0" y="262" class="tick" transform="rotate(45 485.0,262)">150</text>
+<rect x="513.7" y="234.0" width="26.7" height="0.0" fill="var(--blue)" opacity="0.82" />
+<rect x="542.3" y="234.0" width="26.7" height="0.0" fill="var(--blue)" opacity="0.82" />
+<rect x="571.0" y="234.0" width="26.7" height="0.0" fill="var(--blue)" opacity="0.82" />
+<text x="571.0" y="262" class="tick" transform="rotate(45 571.0,262)">180</text>
+<rect x="599.7" y="234.0" width="26.7" height="0.0" fill="var(--blue)" opacity="0.82" />
+<rect x="628.3" y="234.0" width="26.7" height="0.0" fill="var(--blue)" opacity="0.82" />
+<rect x="657.0" y="234.0" width="26.7" height="0.0" fill="var(--blue)" opacity="0.82" />
+<text x="657.0" y="262" class="tick" transform="rotate(45 657.0,262)">210</text>
+<rect x="685.7" y="234.0" width="26.7" height="0.0" fill="var(--blue)" opacity="0.82" />
+<rect x="714.3" y="233.1" width="26.7" height="0.9" fill="var(--blue)" opacity="0.82" />
+<text x="380.0" y="277" class="axis-label" text-anchor="middle">Bucket start</text>
+</svg>
+      </section>
+      <section class="panel">
+        <svg viewBox="0 0 760 280" role="img" aria-label="Italian word length distribution">
+<text x="54" y="22" class="chart-title">Italian word length distribution</text>
+<line x1="54" y1="234" x2="742" y2="234" class="axis" />
+<line x1="54" y1="34" x2="54" y2="234" class="axis" />
+<line x1="54" y1="234.0" x2="742" y2="234.0" class="grid" />
+<text x="44" y="238.0" class="tick" text-anchor="end">0</text>
+<line x1="54" y1="184.0" x2="742" y2="184.0" class="grid" />
+<text x="44" y="188.0" class="tick" text-anchor="end">58</text>
+<line x1="54" y1="134.0" x2="742" y2="134.0" class="grid" />
+<text x="44" y="138.0" class="tick" text-anchor="end">116</text>
+<line x1="54" y1="84.0" x2="742" y2="84.0" class="grid" />
+<text x="44" y="88.0" class="tick" text-anchor="end">173</text>
+<line x1="54" y1="34.0" x2="742" y2="34.0" class="grid" />
+<text x="44" y="38.0" class="tick" text-anchor="end">231</text>
+<rect x="55.0" y="43.5" width="50.9" height="190.5" fill="var(--green)" opacity="0.82" />
+<text x="55.0" y="262" class="tick" transform="rotate(45 55.0,262)">0</text>
+<rect x="107.9" y="34.0" width="50.9" height="200.0" fill="var(--green)" opacity="0.82" />
+<text x="107.9" y="262" class="tick" transform="rotate(45 107.9,262)">10</text>
+<rect x="160.8" y="91.1" width="50.9" height="142.9" fill="var(--green)" opacity="0.82" />
+<text x="160.8" y="262" class="tick" transform="rotate(45 160.8,262)">20</text>
+<rect x="213.8" y="169.1" width="50.9" height="64.9" fill="var(--green)" opacity="0.82" />
+<text x="213.8" y="262" class="tick" transform="rotate(45 213.8,262)">30</text>
+<rect x="266.7" y="202.0" width="50.9" height="32.0" fill="var(--green)" opacity="0.82" />
+<text x="266.7" y="262" class="tick" transform="rotate(45 266.7,262)">40</text>
+<rect x="319.6" y="212.4" width="50.9" height="21.6" fill="var(--green)" opacity="0.82" />
+<text x="319.6" y="262" class="tick" transform="rotate(45 319.6,262)">50</text>
+<rect x="372.5" y="219.3" width="50.9" height="14.7" fill="var(--green)" opacity="0.82" />
+<text x="372.5" y="262" class="tick" transform="rotate(45 372.5,262)">60</text>
+<rect x="425.5" y="227.1" width="50.9" height="6.9" fill="var(--green)" opacity="0.82" />
+<text x="425.5" y="262" class="tick" transform="rotate(45 425.5,262)">70</text>
+<rect x="478.4" y="223.6" width="50.9" height="10.4" fill="var(--green)" opacity="0.82" />
+<text x="478.4" y="262" class="tick" transform="rotate(45 478.4,262)">80</text>
+<rect x="531.3" y="228.8" width="50.9" height="5.2" fill="var(--green)" opacity="0.82" />
+<text x="531.3" y="262" class="tick" transform="rotate(45 531.3,262)">90</text>
+<rect x="584.2" y="232.3" width="50.9" height="1.7" fill="var(--green)" opacity="0.82" />
+<text x="584.2" y="262" class="tick" transform="rotate(45 584.2,262)">100</text>
+<rect x="637.2" y="233.1" width="50.9" height="0.9" fill="var(--green)" opacity="0.82" />
+<text x="637.2" y="262" class="tick" transform="rotate(45 637.2,262)">110</text>
+<rect x="690.1" y="233.1" width="50.9" height="0.9" fill="var(--green)" opacity="0.82" />
+<text x="690.1" y="262" class="tick" transform="rotate(45 690.1,262)">120</text>
+<text x="380.0" y="277" class="axis-label" text-anchor="middle">Bucket start</text>
+</svg>
+      </section>
+      <section class="panel">
+        <h2>Frequent English words</h2>
+<div class="word-bars">
+<div class="word-row"><span class="word">the</span><div class="bar"><span style="width:100.0%; background:var(--blue);"></span></div><span class="count">881</span></div>
+<div class="word-row"><span class="word">and</span><div class="bar"><span style="width:83.4%; background:var(--blue);"></span></div><span class="count">735</span></div>
+<div class="word-row"><span class="word">that</span><div class="bar"><span style="width:27.6%; background:var(--blue);"></span></div><span class="count">243</span></div>
+<div class="word-row"><span class="word">was</span><div class="bar"><span style="width:26.0%; background:var(--blue);"></span></div><span class="count">229</span></div>
+<div class="word-row"><span class="word">his</span><div class="bar"><span style="width:23.5%; background:var(--blue);"></span></div><span class="count">207</span></div>
+<div class="word-row"><span class="word">had</span><div class="bar"><span style="width:22.0%; background:var(--blue);"></span></div><span class="count">194</span></div>
+<div class="word-row"><span class="word">you</span><div class="bar"><span style="width:20.7%; background:var(--blue);"></span></div><span class="count">182</span></div>
+<div class="word-row"><span class="word">with</span><div class="bar"><span style="width:20.3%; background:var(--blue);"></span></div><span class="count">179</span></div>
+<div class="word-row"><span class="word">her</span><div class="bar"><span style="width:19.5%; background:var(--blue);"></span></div><span class="count">172</span></div>
+<div class="word-row"><span class="word">but</span><div class="bar"><span style="width:18.7%; background:var(--blue);"></span></div><span class="count">165</span></div>
+<div class="word-row"><span class="word">not</span><div class="bar"><span style="width:17.8%; background:var(--blue);"></span></div><span class="count">157</span></div>
+<div class="word-row"><span class="word">him</span><div class="bar"><span style="width:17.0%; background:var(--blue);"></span></div><span class="count">150</span></div>
+<div class="word-row"><span class="word">she</span><div class="bar"><span style="width:15.6%; background:var(--blue);"></span></div><span class="count">137</span></div>
+<div class="word-row"><span class="word">for</span><div class="bar"><span style="width:14.6%; background:var(--blue);"></span></div><span class="count">129</span></div>
+<div class="word-row"><span class="word">have</span><div class="bar"><span style="width:14.3%; background:var(--blue);"></span></div><span class="count">126</span></div>
+</div>
+      </section>
+      <section class="panel">
+        <h2>Frequent Italian words</h2>
+<div class="word-bars">
+<div class="word-row"><span class="word">che</span><div class="bar"><span style="width:100.0%; background:var(--green);"></span></div><span class="count">468</span></div>
+<div class="word-row"><span class="word">non</span><div class="bar"><span style="width:69.2%; background:var(--green);"></span></div><span class="count">324</span></div>
+<div class="word-row"><span class="word">per</span><div class="bar"><span style="width:41.5%; background:var(--green);"></span></div><span class="count">194</span></div>
+<div class="word-row"><span class="word">con</span><div class="bar"><span style="width:32.9%; background:var(--green);"></span></div><span class="count">154</span></div>
+<div class="word-row"><span class="word">una</span><div class="bar"><span style="width:30.3%; background:var(--green);"></span></div><span class="count">142</span></div>
+<div class="word-row"><span class="word">era</span><div class="bar"><span style="width:22.2%; background:var(--green);"></span></div><span class="count">104</span></div>
+<div class="word-row"><span class="word">come</span><div class="bar"><span style="width:22.0%; background:var(--green);"></span></div><span class="count">103</span></div>
+<div class="word-row"><span class="word">del</span><div class="bar"><span style="width:20.1%; background:var(--green);"></span></div><span class="count">94</span></div>
+<div class="word-row"><span class="word">della</span><div class="bar"><span style="width:18.6%; background:var(--green);"></span></div><span class="count">87</span></div>
+<div class="word-row"><span class="word">più</span><div class="bar"><span style="width:16.7%; background:var(--green);"></span></div><span class="count">78</span></div>
+<div class="word-row"><span class="word">gli</span><div class="bar"><span style="width:15.8%; background:var(--green);"></span></div><span class="count">74</span></div>
+<div class="word-row"><span class="word">disse</span><div class="bar"><span style="width:15.6%; background:var(--green);"></span></div><span class="count">73</span></div>
+<div class="word-row"><span class="word">lui</span><div class="bar"><span style="width:13.2%; background:var(--green);"></span></div><span class="count">62</span></div>
+<div class="word-row"><span class="word">alla</span><div class="bar"><span style="width:12.2%; background:var(--green);"></span></div><span class="count">57</span></div>
+<div class="word-row"><span class="word">quando</span><div class="bar"><span style="width:12.0%; background:var(--green);"></span></div><span class="count">56</span></div>
+</div>
+      </section>
+      <section class="panel full">
+        <h2>Sample rows</h2>
+<table>
+<thead><tr><th>Index</th><th>English</th><th>Italian</th><th>Tokens</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>Source: Project Gutenberg</td><td>Source: www.liberliber.it/Audiobook available here</td><td>4 / 11</td></tr>
+<tr><td>2954</td><td>&quot;Nothing to you?</td><td>— Vi è indifferente?</td><td>5 / 5</td></tr>
+<tr><td>5867</td><td>I obtained a good situation, and was happy.</td><td>Ebbi un buon posto ed ero felice.</td><td>10 / 8</td></tr>
+<tr><td>8821</td><td>Here the Queen put on her spectacles, and began staring at the Hatter, who turned pale and fidgeted.</td><td>La Regina inforcò gli occhiali, e cominciò a fissare il Cappellaio, che diventò pallido dallo spavento.</td><td>21 / 19</td></tr>
+<tr><td>11775</td><td>Poor people who can hardly keep themselves have eight hearty children.</td><td>Della gente che tira la vita coi denti ha otto robusti figliuoli.</td><td>12 / 13</td></tr>
+<tr><td>14689</td><td>This opportunity, therefore, ought not to be allowed to pass for letting Italy at last see her liberator appear.</td><td>Non si debba, adunque, lasciare passare questa occasione, acciò che l’Italia, dopo tanto tempo, vegga uno suo redentore.</td><td>22 / 26</td></tr>
+<tr><td>17642</td><td>&#x27;What has Levin to do with it?</td><td>— E che c’entra, ora, anche Levin?</td><td>9 / 12</td></tr>
+<tr><td>20556</td><td>&#x27;There, you see! And you were quite in despair!&#x27; said Matrena Filimonovna, pointing to the board.</td><td>— Su, ecco, e voi non facevate altro che disperarvi! — diceva Matrëna Filimonovna, mostrando la tavola.</td><td>22 / 22</td></tr>
+<tr><td>23510</td><td>I must know everything.</td><td>Ho bisogno di sapere tutto.</td><td>5 / 6</td></tr>
+<tr><td>26464</td><td>&#x27;I&#x27;m coming, Mlle Varenka,&#x27; said Koznyshev, drinking up his coffee and pocketing his handkerchief and cigarcase.</td><td>— Vengo, vengo, Varvara Andreevna — diceva Sergej Ivanovic, finendo di bere la tazza di caffè e distribuendo per le tasche il fazzoletto e il portasigari.</td><td>23 / 30</td></tr>
+<tr><td>29377</td><td>&#x27;He spoils me, you know,&#x27; said Lvov to his wife, indicating Levin. &#x27;He assures me that our children are splendid, though I see so much that is bad in them.&#x27;</td><td>— Ecco, egli mi vizia — disse L’vov alla moglie — mi assicura che i nostri ragazzi sono buonissimi, quando io so che in loro c’è tanto di cattivo.</td><td>38 / 36</td></tr>
+<tr><td>32331</td><td>&#x27;I shall still get angry with Ivan the coachman in the same way, shall dispute in the same way, shall inopportunely express my thoughts; there will still be a wall between my soul&#x27;s holy of holies and other people; even my wife I shall still blame for my own fears and shall repent of it. My reason will still not understand why I pray, but I shall still pray, and my life, my whole life, independently of anything that may happen to me, is every moment of it no longer meaningless as it was before, but has an unquestionable meaning of goodness with which I have the power to invest it.&#x27;</td><td>Mi arrabbierò sempre alla stessa maniera contro Ivan il cocchiere, sempre alla stessa maniera discuterò, esprimerò a sproposito le mie idee, ci sarà lo stesso muro fra il tempio dell’anima mia e quello degli altri, e perfino mia moglie accuserò sempre alla stessa maniera del mio spavento e ne proverò rimorso; sempre alla stessa maniera, non capirò con la ragione perché prego e intanto pregherò, ma la mia vita adesso, tutta la mia vita, indipendentemente da tutto quello che mi può accadere, ogni suo attimo, non solo non è più senza senso, come prima, ma ha un indubitabile senso di bene, che io ho il potere di trasfondere in essa!”.</td><td>126 / 127</td></tr>
+</tbody></table>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

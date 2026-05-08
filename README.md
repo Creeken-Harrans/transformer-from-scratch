@@ -75,22 +75,20 @@ For GPU training, install a CUDA-compatible PyTorch build.
 The model is trained on the **OPUS Books** dataset:
 
 * Source: `Helsinki-NLP/opus_books`
-* Language pair: English → Italian (configurable)
+* Local path: `data/opus_books_en_it`
+* Language pair: English → Italian
 
-The dataset provides only a training split, so a **90/10 split** is created manually for training and validation.
+The local dataset is saved in Hugging Face `load_from_disk` format. It provides only a training split, so a **90/10 split** is created manually for training and validation.
 
 ### Changing Language Pairs or Dataset
 
-You can change the translation language pair by modifying the following fields in `config.py`:
+To change the language pair or dataset, place the new saved dataset under `data/` and update these fields in `config.py`:
 
 ```python
-lang_src = "en"
-lang_tgt = "it"
+"dataset_dir": "data/opus_books_en_it",
+"lang_src": "en",
+"lang_tgt": "it"
 ```
-
-These values directly control which language pair is loaded from OPUS.
-
-You may also switch to a **different OPUS dataset** by changing the dataset source inside `train.py`.
 
 ### English → Hindi Translation
 
@@ -119,16 +117,16 @@ Key parameters include:
 "lr": 1.0,
 "seq_len": 350,
 "d_model": 512,
-"datasource": 'Helsinki-NLP/opus_books',
+"dataset_dir": "data/opus_books_en_it",
 "lang_src": "en",
 "lang_tgt": "it",
-"model_folder": "weights",
-"model_basename": "tmodel_",
+"model_folder": "weights/rtx5060_bs8_seq350",
+"model_basename": "tmodel_rtx5060_bs8_seq350_",
 "preload": None,
-"tokenizer_file": "tokenizer_{0}.json",
-"experiment_name": "runs/tmodel",
-"save_best_only": False,
-"save_every": None
+"tokenizer_file": "data/tokenizer_{0}.json",
+"experiment_name": "runs/rtx5060_bs8_seq350",
+"save_best_only": True,
+"save_every": 5
 ```
 
 ### Important Note on Batch Size
@@ -156,7 +154,7 @@ Smaller batch sizes are recommended for local machines.
 To start training:
 
 ```bash
-uv run train.py
+./run_train.sh
 ```
 
 During training:

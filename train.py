@@ -5,7 +5,7 @@ from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.tensorboard import SummaryWriter
 import torchmetrics
 
-from datasets import load_dataset
+from datasets import load_from_disk
 from tokenizers import Tokenizer
 from tokenizers.models import WordLevel
 from tokenizers.trainers import WordLevelTrainer
@@ -241,12 +241,15 @@ def get_or_build_tokenizer(config, ds, lang):
         tokenizer = Tokenizer.from_file(str(tokenizer_path))
     return tokenizer
 
+def load_translation_dataset(config):
+    dataset_dir = Path(config["dataset_dir"])
+    if not dataset_dir.exists():
+        raise FileNotFoundError(f"Missing local dataset directory: {dataset_dir}")
+    return cast(TranslationDataset, load_from_disk(str(dataset_dir)))
+
 def get_ds(config):
     # It only has the train split, so we divide it overselves
-    ds_raw = cast(
-        TranslationDataset,
-        load_dataset(f"{config['datasource']}", f"{config['lang_src']}-{config['lang_tgt']}", split='train')
-    )
+    ds_raw = load_translation_dataset(config)
 
     # Build tokenizers
     tokenizer_src = get_or_build_tokenizer(config, ds_raw, config['lang_src'])
