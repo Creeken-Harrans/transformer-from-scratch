@@ -14,3 +14,6 @@ dependencies = [
     "torchmetrics>=1.8.2",
     "tqdm>=4.67.1",
 ]
+
+[tool.pyright]
+reportPrivateImportUsage = false

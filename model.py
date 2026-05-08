@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import math
+from typing import cast
 
 class InputEmbeddings(nn.Module):
     def __init__(self, d_model: int, vocab_size: int):
@@ -37,7 +38,8 @@ class PositionalEncoding(nn.Module):
         self.register_buffer("pe", pe)
 
     def forward(self, x):
-        x = x + (self.pe[:, :x.shape[1], :]).requires_grad_(False) # Do not record gradient of this positional encoding tensor
+        pe = self.get_buffer("pe")
+        x = x + (pe[:, :x.shape[1], :]).requires_grad_(False) # Do not record gradient of this positional encoding tensor
         # pe[:, :x.shape[1], :] = Take positional encodings up to the sequence length of x (of all batches) -- think with keeping in mind shape of pe
         return self.dropout(x)
     
@@ -85,6 +87,7 @@ class MultiHeadAttentionBlock(nn.Module):
         self.w_o = nn.Linear(d_model, d_model) # Wo -- in ppr it is h*d_v,d_model [d_v==d_k and d_k*h=d_model]
 
         self.dropout = nn.Dropout(dropout)
+        self.attention_scores: torch.Tensor | None = None
 
     @staticmethod
     def attention(query, key, value, mask, dropout: nn.Dropout):
@@ -158,7 +161,7 @@ class EncoderBlock(nn.Module):
 class Encoder(nn.Module):
     def __init__(self, layers: nn.ModuleList):
         super().__init__()
-        self.layers = layers
+        self.layers: nn.ModuleList = layers
         self.norm = LayerNormalization()
 
     def forward(self, x, mask):
@@ -166,6 +169,9 @@ class Encoder(nn.Module):
         for layer in self.layers:
             x = layer(x, mask) # Calls the forward method of EncoderBlock (do not get confused by the similar arguments to Encoder.forward)
         return self.norm(x)
+
+    def get_layer(self, index: int) -> EncoderBlock:
+        return cast(EncoderBlock, self.layers[index])
 
 class DecoderBlock(nn.Module):
     def __init__(self, self_attention_block: MultiHeadAttentionBlock, cross_attention_block: MultiHeadAttentionBlock, feed_forward_block: FeedForwardBlock, dropout: float):
@@ -184,13 +190,16 @@ class DecoderBlock(nn.Module):
 class Decoder(nn.Module):
     def __init__(self, layers: nn.ModuleList):
         super().__init__()
-        self.layers = layers
+        self.layers: nn.ModuleList = layers
         self.norm = LayerNormalization()
 
     def forward(self, x, encoder_output, src_mask, tgt_mask):
         for layer in self.layers:
             x = layer(x, encoder_output, src_mask, tgt_mask) # Calls the forward method of DecoderBlock
         return self.norm(x)
+
+    def get_layer(self, index: int) -> DecoderBlock:
+        return cast(DecoderBlock, self.layers[index])
     
 class ProjectionLayer(nn.Module):
 # Project from d_model to vocab_size and apply log-softmax for numerical stability (log-softmax is used instead of softmax which is used in ppr) (Linear layer of architecture)

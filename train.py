@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader, random_split
+from torch.utils.data import DataLoader, Dataset as TorchDataset, random_split
 from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.tensorboard import SummaryWriter
 import torchmetrics
@@ -14,11 +14,18 @@ from tokenizers.pre_tokenizers import Whitespace
 from tqdm import tqdm
 from sacrebleu import corpus_bleu
 from pathlib import Path
+from typing import Any, Iterable, Mapping, Protocol, cast
 import warnings
 
 from model import build_transformer
 from dataset import BilingualDataset, causal_mask
 from config import get_config, get_weights_file_path
+
+TranslationItem = Mapping[str, Mapping[str, str]]
+
+class TranslationDataset(Iterable[TranslationItem], Protocol):
+    def __len__(self) -> int:
+        ...
 
 def beam_search_decode(model, beam_size, source, source_mask, tokenizer_src, tokenizer_tgt, max_len, device, alpha=0.6):
     sos_idx = tokenizer_tgt.token_to_id('[SOS]')
@@ -218,7 +225,7 @@ def run_validation(
     return bleu, accuracy
 
     
-def get_all_sentences(ds, lang):
+def get_all_sentences(ds: Iterable[TranslationItem], lang):
     for item in ds:
         yield item['translation'][lang]
 
@@ -236,7 +243,10 @@ def get_or_build_tokenizer(config, ds, lang):
 
 def get_ds(config):
     # It only has the train split, so we divide it overselves
-    ds_raw = load_dataset(f"{config['datasource']}", f"{config['lang_src']}-{config['lang_tgt']}", split='train')
+    ds_raw = cast(
+        TranslationDataset,
+        load_dataset(f"{config['datasource']}", f"{config['lang_src']}-{config['lang_tgt']}", split='train')
+    )
 
     # Build tokenizers
     tokenizer_src = get_or_build_tokenizer(config, ds_raw, config['lang_src'])
@@ -246,7 +256,7 @@ def get_ds(config):
     # This ensures we measure true generalization rather than memorization.
     train_ds_size = int(0.9 * len(ds_raw))
     val_ds_size = len(ds_raw) - train_ds_size
-    train_ds_raw, val_ds_raw = random_split(ds_raw, [train_ds_size, val_ds_size])
+    train_ds_raw, val_ds_raw = random_split(cast(TorchDataset[Any], ds_raw), [train_ds_size, val_ds_size])
 
     train_ds = BilingualDataset(train_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
     val_ds = BilingualDataset(val_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
@@ -319,10 +329,10 @@ def train_model(config):
         scheduler.load_state_dict(state['scheduler_state_dict'])
         global_step = state['global_step']
         bleu = state['bleu']
-        best_bleu = state.get('best_bleu') 
+        best_bleu = state.get('best_bleu', bleu)
 
     # Simple Cross Entropy Loss fn
-    loss_fn = nn.CrossEntropyLoss(ignore_index=tokenizer_src.token_to_id('[PAD]'), label_smoothing=0.1) # Apply label smoothing to avoid overconfident predictions by assigning a small probability to other classes (non top classes) and imporove generalization
+    loss_fn = nn.CrossEntropyLoss(ignore_index=tokenizer_tgt.token_to_id('[PAD]'), label_smoothing=0.1) # Apply label smoothing to avoid overconfident predictions by assigning a small probability to other classes (non top classes) and imporove generalization
 
     for epoch in range(initial_epoch, config['num_epochs']):
         batch_iterator = tqdm(train_dataloader, desc=f'Processing epoch {epoch: 02d}')
@@ -359,7 +369,7 @@ def train_model(config):
 
             global_step += 1
 
-        bleu = run_validation(model, val_dataloader, tokenizer_src, tokenizer_tgt, config['seq_len'], device, lambda msg: batch_iterator.write(msg), global_step, writer)
+        bleu, _ = run_validation(model, val_dataloader, tokenizer_src, tokenizer_tgt, config['seq_len'], device, lambda msg: batch_iterator.write(msg), global_step, writer)
 
         if bleu > best_bleu:
             best_bleu = bleu

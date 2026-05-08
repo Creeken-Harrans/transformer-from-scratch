@@ -10,13 +10,13 @@ def get_config():
         "datasource": 'Helsinki-NLP/opus_books',
         "lang_src": "en",
         "lang_tgt": "it",
-        "model_folder": "weights",
-        "model_basename": "tmodel_",
+        "model_folder": "weights/rtx5060_bs8_seq350",
+        "model_basename": "tmodel_rtx5060_bs8_seq350_",
         "preload": None,
         "tokenizer_file": "tokenizer_{0}.json",
-        "experiment_name": "runs/tmodel",
-        "save_best_only": False,
-        "save_every": None
+        "experiment_name": "runs/rtx5060_bs8_seq350",
+        "save_best_only": True,
+        "save_every": 5
     }
 
 def get_weights_file_path(config, epoch: str):
